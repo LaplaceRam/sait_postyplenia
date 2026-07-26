@@ -308,7 +308,7 @@ export default function Home() {
                     <span>
                       {group.funding} · {group.form}
                     </span>
-                    <span>Список РЭУ обновлён: {group.updatedAt}</span>
+                    <span>Список РЭУ обновлён: {group.updatedAt} (на сайте)</span>
                   </div>
                 </article>
               ))}
