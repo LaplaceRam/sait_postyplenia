@@ -191,7 +191,7 @@
       .group-metrics {
         display: grid;
         gap: 12px;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(5, minmax(0, 1fr));
         margin: 20px 0;
       }
 
@@ -374,6 +374,7 @@
               funding: group?.place_type_name || "тип места не указан",
               id: entrant.competitive_group_id,
               myPlace: entrant.rating,
+              places: group?.admission_volume ?? null,
               priority: entrant.priority,
               program:
                 group?.speciality_name ||
@@ -437,8 +438,12 @@
                         <dd>${escapeHtml(group.priority ?? "—")}</dd>
                       </div>
                       <div>
-                        <dt>Место</dt>
+                        <dt>Моё место в списках</dt>
                         <dd>${escapeHtml(group.myPlace ?? "—")}</dd>
+                      </div>
+                      <div>
+                        <dt>Количество мест</dt>
+                        <dd>${escapeHtml(group.places ?? "—")}</dd>
                       </div>
                       <div>
                         <dt>Баллы</dt>
