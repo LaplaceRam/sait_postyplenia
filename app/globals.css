@@ -68,6 +68,14 @@ button {
   margin: 0;
 }
 
+.site-header__ukp {
+  color: var(--navy);
+  font-family: "Intro", Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 12px 0 0;
+}
+
 .dashboard {
   margin: 0 auto;
   max-width: 1120px;

@@ -225,6 +225,7 @@ export default function Home() {
         <div className="site-header__inner">
           <p className="site-header__name">Глеб.</p>
           <h1>Поступление в магистратуру 2026</h1>
+          <p className="site-header__ukp">УКП {APPLICANT_UKP}</p>
         </div>
       </header>
 
@@ -247,7 +248,7 @@ export default function Home() {
         <section className="groups-panel" aria-labelledby="rea-heading">
           <div className="groups-panel__top">
             <div>
-              <p className="section-label">УКП {APPLICANT_UKP}</p>
+              <p className="section-label">Конкурсные группы</p>
               <h2 id="rea-heading">РЭУ им. Г.В. Плеханова</h2>
             </div>
             <div className="summary-chip">
