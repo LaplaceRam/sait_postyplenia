@@ -42,12 +42,13 @@ button {
 .site-header {
   background: var(--background);
   color: var(--navy);
-  padding: 32px 20px 20px;
+  padding: 32px 0 20px;
 }
 
 .site-header__inner {
   margin: 0 auto;
   max-width: 1120px;
+  padding: 0 20px;
 }
 
 .site-header__name {
@@ -238,7 +239,11 @@ button {
 
 @media (max-width: 720px) {
   .site-header {
-    padding: 24px 16px;
+    padding: 24px 0;
+  }
+
+  .site-header__inner {
+    padding: 0 16px;
   }
 
   .dashboard {
