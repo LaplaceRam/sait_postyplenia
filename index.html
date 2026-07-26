@@ -141,6 +141,14 @@
         padding: 24px;
       }
 
+      .refresh-note {
+        border-bottom: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 13px;
+        margin: 0;
+        padding: 10px 24px;
+      }
+
       .group-card {
         padding: 22px 24px;
       }
@@ -276,6 +284,10 @@
             <div class="summary-chip" id="summary">Загрузка</div>
           </div>
 
+          <p class="refresh-note" id="refresh-note">
+            Автообновление каждые 10 минут
+          </p>
+
           <div id="content">
             <p class="state-message">Загружаю твои конкурсные группы...</p>
           </div>
@@ -285,6 +297,7 @@
 
     <script>
       const APPLICANT_UKP = "2294268";
+      const REFRESH_INTERVAL_MS = 10 * 60 * 1000;
       const REA_API_URL = "https://abitrating.rea.ru/rest/v1";
       const REA_ANON_KEY =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlzcyI6InN1cGFiYXNlIiwiaWF0IjoxNzgwNjQxOTU0LCJleHAiOjIwOTYwMDE5NTR9.HK1E0UwpIPbIHK-C1HtCjoiszflge1Ul8gfD7DPicXQ";
@@ -295,6 +308,7 @@
       };
 
       const contentElement = document.querySelector("#content");
+      const refreshNoteElement = document.querySelector("#refresh-note");
       const summaryElement = document.querySelector("#summary");
 
       function formatDate(value) {
@@ -316,6 +330,17 @@
           timeZone: "Europe/Moscow",
           year: "numeric",
         }).format(date);
+      }
+
+      function formatCheckTime(value) {
+        return `Последняя проверка: ${new Intl.DateTimeFormat("ru-RU", {
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          month: "2-digit",
+          second: "2-digit",
+          timeZone: "Europe/Moscow",
+        }).format(value)}`;
       }
 
       async function fetchJson(path) {
@@ -461,10 +486,13 @@
           summaryElement.textContent = "Ошибка";
           contentElement.innerHTML =
             '<p class="state-message">Не удалось загрузить данные РЭУ. Попробуй обновить страницу.</p>';
+        } finally {
+          refreshNoteElement.textContent = formatCheckTime(new Date());
         }
       }
 
       loadReaApplications();
+      window.setInterval(loadReaApplications, REFRESH_INTERVAL_MS);
     </script>
   </body>
 </html>
