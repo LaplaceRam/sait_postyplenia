@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Глеб | Поступление в магистратуру 2026</title>
+    <meta
+      name="description"
+      content="Личный трекер статуса поступления в магистратуру."
+    />
+    <style>
+      :root {
+        --background: #f4f7fb;
+        --foreground: #111827;
+        --navy: #071a3a;
+        --navy-soft: #0e2a57;
+        --border: #d9e2ef;
+        --muted: #64748b;
+        --green: #0f7a4f;
+        --green-bg: #e6f6ee;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--background);
+        color: var(--foreground);
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .site-header {
+        background: linear-gradient(90deg, var(--navy), var(--navy-soft));
+        color: #ffffff;
+        padding: 28px 20px;
+      }
+
+      .site-header__inner {
+        margin: 0 auto;
+        max-width: 1120px;
+      }
+
+      .site-header__name {
+        color: #bfd4ff;
+        font-size: 15px;
+        font-weight: 700;
+        margin: 0 0 6px;
+      }
+
+      .site-header h1 {
+        font-size: clamp(28px, 4vw, 46px);
+        line-height: 1.08;
+        margin: 0;
+      }
+
+      .dashboard {
+        margin: 0 auto;
+        max-width: 1120px;
+        padding: 28px 20px 48px;
+      }
+
+      .university-tabs {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+
+      .university-tabs__button {
+        background: #ffffff;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: #203047;
+        cursor: pointer;
+        min-height: 42px;
+        padding: 0 18px;
+        transition:
+          background 160ms ease,
+          border-color 160ms ease,
+          color 160ms ease;
+      }
+
+      .university-tabs__button:hover,
+      .university-tabs__button[data-active="true"] {
+        background: var(--navy);
+        border-color: var(--navy);
+        color: #ffffff;
+      }
+
+      .groups-panel {
+        background: #ffffff;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .groups-panel__top {
+        align-items: center;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        gap: 18px;
+        justify-content: space-between;
+        padding: 22px 24px;
+      }
+
+      .section-label {
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        margin: 0 0 4px;
+        text-transform: uppercase;
+      }
+
+      .groups-panel h2 {
+        font-size: 24px;
+        line-height: 1.2;
+        margin: 0;
+      }
+
+      .summary-chip {
+        background: #eef4ff;
+        border: 1px solid #c9dafb;
+        border-radius: 999px;
+        color: #15376c;
+        flex: 0 0 auto;
+        font-size: 14px;
+        font-weight: 700;
+        padding: 8px 12px;
+      }
+
+      .state-message {
+        color: var(--muted);
+        font-size: 15px;
+        margin: 0;
+        padding: 24px;
+      }
+
+      .group-card {
+        padding: 22px 24px;
+      }
+
+      .group-card + .group-card {
+        border-top: 1px solid var(--border);
+      }
+
+      .group-card__main {
+        align-items: flex-start;
+        display: flex;
+        gap: 18px;
+        justify-content: space-between;
+      }
+
+      .group-card__faculty {
+        color: var(--muted);
+        font-size: 14px;
+        margin: 0 0 6px;
+      }
+
+      .group-card h3 {
+        font-size: 20px;
+        line-height: 1.25;
+        margin: 0;
+      }
+
+      .status-pill {
+        background: var(--green-bg);
+        border: 1px solid #b9e6cd;
+        border-radius: 999px;
+        color: var(--green);
+        flex: 0 0 auto;
+        font-size: 13px;
+        font-weight: 700;
+        padding: 7px 10px;
+        white-space: nowrap;
+      }
+
+      .group-metrics {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        margin: 20px 0;
+      }
+
+      .group-metrics div {
+        background: #f8fafc;
+        border: 1px solid #e5ebf3;
+        border-radius: 8px;
+        padding: 12px;
+      }
+
+      .group-metrics dt {
+        color: var(--muted);
+        font-size: 13px;
+        margin-bottom: 4px;
+      }
+
+      .group-metrics dd {
+        color: #0f172a;
+        font-size: 22px;
+        font-weight: 800;
+        margin: 0;
+      }
+
+      .group-card__footer {
+        color: var(--muted);
+        display: flex;
+        font-size: 14px;
+        gap: 12px;
+        justify-content: space-between;
+      }
+
+      @media (max-width: 720px) {
+        .site-header {
+          padding: 24px 16px;
+        }
+
+        .dashboard {
+          padding: 20px 16px 36px;
+        }
+
+        .groups-panel__top,
+        .group-card__main,
+        .group-card__footer {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .groups-panel__top,
+        .group-card {
+          padding: 18px;
+        }
+
+        .group-metrics {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .status-pill {
+          white-space: normal;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header class="site-header">
+        <div class="site-header__inner">
+          <p class="site-header__name">Глеб</p>
+          <h1>Поступление в магистратуру 2026</h1>
+        </div>
+      </header>
+
+      <section class="dashboard">
+        <nav class="university-tabs" aria-label="Вузы">
+          <button
+            aria-pressed="true"
+            class="university-tabs__button"
+            data-active="true"
+            type="button"
+          >
+            РЭУ
+          </button>
+        </nav>
+
+        <section class="groups-panel" aria-labelledby="rea-heading">
+          <div class="groups-panel__top">
+            <div>
+              <p class="section-label">УКП 2294268</p>
+              <h2 id="rea-heading">РЭУ им. Г.В. Плеханова</h2>
+            </div>
+            <div class="summary-chip" id="summary">Загрузка</div>
+          </div>
+
+          <div id="content">
+            <p class="state-message">Загружаю твои конкурсные группы...</p>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script>
+      const APPLICANT_UKP = "2294268";
+      const REA_API_URL = "https://abitrating.rea.ru/rest/v1";
+      const REA_ANON_KEY =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlzcyI6InN1cGFiYXNlIiwiaWF0IjoxNzgwNjQxOTU0LCJleHAiOjIwOTYwMDE5NTR9.HK1E0UwpIPbIHK-C1HtCjoiszflge1Ul8gfD7DPicXQ";
+
+      const requestHeaders = {
+        apikey: REA_ANON_KEY,
+        Authorization: `Bearer ${REA_ANON_KEY}`,
+      };
+
+      const contentElement = document.querySelector("#content");
+      const summaryElement = document.querySelector("#summary");
+
+      function formatDate(value) {
+        if (!value) {
+          return "нет данных";
+        }
+
+        const date = new Date(value);
+
+        if (Number.isNaN(date.getTime())) {
+          return "нет данных";
+        }
+
+        return new Intl.DateTimeFormat("ru-RU", {
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          month: "2-digit",
+          timeZone: "Europe/Moscow",
+          year: "numeric",
+        }).format(date);
+      }
+
+      async function fetchJson(path) {
+        const response = await fetch(`${REA_API_URL}${path}`, {
+          headers: requestHeaders,
+        });
+
+        if (!response.ok) {
+          throw new Error(`REA API error: ${response.status}`);
+        }
+
+        return response.json();
+      }
+
+      function mergeApplications(entrantRows, groupRows) {
+        const groupsById = new Map(
+          groupRows.map((group) => [group.competitive_group_id, group]),
+        );
+
+        return entrantRows
+          .map((entrant) => {
+            const group = groupsById.get(entrant.competitive_group_id);
+
+            return {
+              agreement: entrant.agreement,
+              faculty:
+                group?.faculty_short_name ||
+                group?.faculty_name ||
+                "Факультет не указан",
+              form: group?.education_form_name || "форма не указана",
+              funding: group?.place_type_name || "тип места не указан",
+              id: entrant.competitive_group_id,
+              myPlace: entrant.rating,
+              priority: entrant.priority,
+              program:
+                group?.speciality_name ||
+                group?.competitive_group_name ||
+                "Конкурсная группа",
+              score: entrant.sum_mark,
+              status: entrant.application_status || "Статус не указан",
+              updatedAt: formatDate(entrant.date_of_list || group?.updated_at),
+            };
+          })
+          .sort((left, right) => {
+            const leftPriority = left.priority ?? Number.MAX_SAFE_INTEGER;
+            const rightPriority = right.priority ?? Number.MAX_SAFE_INTEGER;
+
+            if (leftPriority !== rightPriority) {
+              return leftPriority - rightPriority;
+            }
+
+            return (
+              (left.myPlace ?? Number.MAX_SAFE_INTEGER) -
+              (right.myPlace ?? Number.MAX_SAFE_INTEGER)
+            );
+          });
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function renderGroups(groups) {
+        summaryElement.textContent = `${groups.length} заявлений`;
+
+        if (groups.length === 0) {
+          contentElement.innerHTML =
+            '<p class="state-message">По этому УКП пока не найдено конкурсных групп.</p>';
+          return;
+        }
+
+        contentElement.innerHTML = `
+          <div class="groups-list">
+            ${groups
+              .map(
+                (group) => `
+                  <article class="group-card">
+                    <div class="group-card__main">
+                      <div>
+                        <p class="group-card__faculty">${escapeHtml(group.faculty)}</p>
+                        <h3>${escapeHtml(group.program)}</h3>
+                      </div>
+                      <span class="status-pill">${escapeHtml(group.status)}</span>
+                    </div>
+
+                    <dl class="group-metrics">
+                      <div>
+                        <dt>Приоритет</dt>
+                        <dd>${escapeHtml(group.priority ?? "—")}</dd>
+                      </div>
+                      <div>
+                        <dt>Место</dt>
+                        <dd>${escapeHtml(group.myPlace ?? "—")}</dd>
+                      </div>
+                      <div>
+                        <dt>Баллы</dt>
+                        <dd>${escapeHtml(group.score ?? "—")}</dd>
+                      </div>
+                      <div>
+                        <dt>Согласие</dt>
+                        <dd>${escapeHtml(group.agreement ? "Да" : "Нет")}</dd>
+                      </div>
+                    </dl>
+
+                    <div class="group-card__footer">
+                      <span>${escapeHtml(group.funding)} · ${escapeHtml(group.form)}</span>
+                      <span>Обновлено: ${escapeHtml(group.updatedAt)}</span>
+                    </div>
+                  </article>
+                `,
+              )
+              .join("")}
+          </div>
+        `;
+      }
+
+      async function loadReaApplications() {
+        try {
+          const entrantRows = await fetchJson(
+            `/entrants?select=competitive_group_id,rating,agreement,date_of_list,sum_mark,priority,application_status,paid_contract,unique_code_profile&unique_code_profile=eq.${APPLICANT_UKP}`,
+          );
+
+          if (entrantRows.length === 0) {
+            renderGroups([]);
+            return;
+          }
+
+          const ids = entrantRows
+            .map((entrant) => entrant.competitive_group_id)
+            .join(",");
+
+          const groupRows = await fetchJson(
+            `/all_competitive_group_stats?select=*&competitive_group_id=in.(${ids})`,
+          );
+
+          renderGroups(mergeApplications(entrantRows, groupRows));
+        } catch {
+          summaryElement.textContent = "Ошибка";
+          contentElement.innerHTML =
+            '<p class="state-message">Не удалось загрузить данные РЭУ. Попробуй обновить страницу.</p>';
+        }
+      }
+
+      loadReaApplications();
+    </script>
+  </body>
+</html>
