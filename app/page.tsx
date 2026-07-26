@@ -82,7 +82,7 @@ function formatCheckTime(value: Date | null) {
     return "Автообновление каждые 10 минут";
   }
 
-  return `Последняя проверка: ${new Intl.DateTimeFormat("ru-RU", {
+  return `Сайт проверил API: ${new Intl.DateTimeFormat("ru-RU", {
     day: "2-digit",
     hour: "2-digit",
     minute: "2-digit",
@@ -308,7 +308,7 @@ export default function Home() {
                     <span>
                       {group.funding} · {group.form}
                     </span>
-                    <span>Обновлено: {group.updatedAt}</span>
+                    <span>Список РЭУ обновлён: {group.updatedAt}</span>
                   </div>
                 </article>
               ))}
