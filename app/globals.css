@@ -144,6 +144,14 @@ button {
   padding: 24px;
 }
 
+.refresh-note {
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0;
+  padding: 10px 24px;
+}
+
 .group-card {
   padding: 22px 24px;
 }

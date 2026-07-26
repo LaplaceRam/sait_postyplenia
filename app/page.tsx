@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 type EntrantRow = {
   agreement: boolean | null;
@@ -43,6 +43,7 @@ type ApplicationGroup = {
 };
 
 const APPLICANT_UKP = "2294268";
+const REFRESH_INTERVAL_MS = 10 * 60 * 1000;
 const REA_API_URL = "https://abitrating.rea.ru/rest/v1";
 const REA_ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlzcyI6InN1cGFiYXNlIiwiaWF0IjoxNzgwNjQxOTU0LCJleHAiOjIwOTYwMDE5NTR9.HK1E0UwpIPbIHK-C1HtCjoiszflge1Ul8gfD7DPicXQ";
@@ -73,6 +74,21 @@ function formatDate(value: string | null) {
     timeZone: "Europe/Moscow",
     year: "numeric",
   }).format(date);
+}
+
+function formatCheckTime(value: Date | null) {
+  if (!value) {
+    return "Автообновление каждые 10 минут";
+  }
+
+  return `Последняя проверка: ${new Intl.DateTimeFormat("ru-RU", {
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    month: "2-digit",
+    second: "2-digit",
+    timeZone: "Europe/Moscow",
+  }).format(value)}`;
 }
 
 async function fetchJson<T>(path: string): Promise<T> {
@@ -134,12 +150,14 @@ export default function Home() {
   const [groups, setGroups] = useState<ApplicationGroup[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [lastCheckedAt, setLastCheckedAt] = useState<Date | null>(null);
+  const hasLoadedRef = useRef(false);
 
   useEffect(() => {
     let isMounted = true;
 
     async function loadReaApplications() {
-      setIsLoading(true);
+      setIsLoading(!hasLoadedRef.current);
       setError(null);
 
       try {
@@ -172,15 +190,22 @@ export default function Home() {
         }
       } finally {
         if (isMounted) {
+          hasLoadedRef.current = true;
+          setLastCheckedAt(new Date());
           setIsLoading(false);
         }
       }
     }
 
     loadReaApplications();
+    const refreshTimer = window.setInterval(
+      loadReaApplications,
+      REFRESH_INTERVAL_MS,
+    );
 
     return () => {
       isMounted = false;
+      window.clearInterval(refreshTimer);
     };
   }, []);
 
@@ -227,6 +252,8 @@ export default function Home() {
               {isLoading ? "Загрузка" : `${visibleGroups.length} заявлений`}
             </div>
           </div>
+
+          <p className="refresh-note">{formatCheckTime(lastCheckedAt)}</p>
 
           {error ? <p className="state-message">{error}</p> : null}
 
