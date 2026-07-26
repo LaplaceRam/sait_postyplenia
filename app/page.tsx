@@ -223,7 +223,7 @@ export default function Home() {
     <main className="min-h-screen bg-[#f4f7fb] text-[#111827]">
       <header className="site-header">
         <div className="site-header__inner">
-          <p className="site-header__name">Глеб</p>
+          <p className="site-header__name">Глеб.</p>
           <h1>Поступление в магистратуру 2026</h1>
         </div>
       </header>
