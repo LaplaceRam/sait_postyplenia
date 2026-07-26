@@ -35,6 +35,7 @@ type ApplicationGroup = {
   form: string;
   funding: string;
   myPlace: number | null;
+  places: number | null;
   priority: number | null;
   program: string;
   score: number | null;
@@ -122,6 +123,7 @@ function mergeApplications(entrantRows: EntrantRow[], groupRows: GroupRow[]) {
         funding: group?.place_type_name || "тип места не указан",
         id: entrant.competitive_group_id,
         myPlace: entrant.rating,
+        places: group?.admission_volume ?? null,
         priority: entrant.priority,
         program:
           group?.speciality_name ||
@@ -285,8 +287,12 @@ export default function Home() {
                       <dd>{group.priority ?? "—"}</dd>
                     </div>
                     <div>
-                      <dt>Место</dt>
+                      <dt>Моё место в списках</dt>
                       <dd>{group.myPlace ?? "—"}</dd>
+                    </div>
+                    <div>
+                      <dt>Количество мест</dt>
+                      <dd>{group.places ?? "—"}</dd>
                     </div>
                     <div>
                       <dt>Баллы</dt>
