@@ -200,7 +200,7 @@ button {
 .group-card__heading-row {
   align-items: baseline;
   display: flex;
-  gap: 50px;
+  gap: 45px;
   justify-content: flex-start;
 }
 
@@ -223,7 +223,9 @@ button {
   line-height: 1.25;
   max-width: 280px;
   padding: 8px 10px;
+  position: relative;
   text-align: left;
+  top: -1px;
   white-space: nowrap;
 }
 
