@@ -233,6 +233,7 @@ button {
   background: #fff1f2;
   border-color: #fecdd3;
   color: #be123c;
+  font-weight: 800;
 }
 
 .exam-time[data-empty="true"] {

@@ -1,12 +1,12 @@
 {
   "applicantUkp": "2420603",
-  "fetchedAt": "2026-07-28T13:10:21.934Z",
+  "fetchedAt": "2026-07-28T19:04:09.591Z",
   "source": "REA",
   "groups": [
     {
       "agreement": false,
       "exam": {
-        "display": "7 августа, пятница 14:00",
+        "display": "Юриспруденция / Торговое дело, 7 августа 14:00",
         "isConflict": true,
         "matches": [
           "Торговое дело",
@@ -17,19 +17,19 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f2b02-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 97,
+      "myPlace": 239,
       "places": 33,
       "priority": 1,
       "program": "Юриспруденция (40.04.01)",
       "score": 0,
       "status": "На рассмотрении",
-      "updatedAt": "28.07.2026, 14:41"
+      "updatedAt": "28.07.2026, 20:42"
     },
     {
       "agreement": false,
       "exam": {
-        "display": "10 августа, понедельник 14:00",
-        "isConflict": false,
+        "display": "Экономика и управление, 10 августа 14:00",
+        "isConflict": true,
         "matches": [
           "Экономика",
           "Менеджмент",
@@ -40,19 +40,19 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f212e-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 187,
+      "myPlace": 494,
       "places": 16,
       "priority": 2,
       "program": "Менеджмент (38.04.02)",
       "score": 0,
       "status": "На рассмотрении",
-      "updatedAt": "28.07.2026, 14:41"
+      "updatedAt": "28.07.2026, 20:41"
     },
     {
       "agreement": false,
       "exam": {
-        "display": "10 августа, понедельник 14:00",
-        "isConflict": false,
+        "display": "Экономика и управление, 10 августа 14:00",
+        "isConflict": true,
         "matches": [
           "Экономика",
           "Менеджмент",
@@ -63,19 +63,19 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f1f97-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 63,
+      "myPlace": 175,
       "places": 13,
       "priority": 3,
       "program": "Экономика (38.04.01)",
       "score": 0,
       "status": "На рассмотрении",
-      "updatedAt": "28.07.2026, 14:41"
+      "updatedAt": "28.07.2026, 20:41"
     },
     {
       "agreement": false,
       "exam": {
-        "display": "10 августа, понедельник 14:00",
-        "isConflict": false,
+        "display": "Экономика и управление, 10 августа 14:00",
+        "isConflict": true,
         "matches": [
           "Экономика",
           "Менеджмент",
@@ -86,19 +86,19 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f1e25-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 149,
+      "myPlace": 341,
       "places": 18,
       "priority": 4,
       "program": "Экономика (38.04.01)",
       "score": 0,
       "status": "На рассмотрении",
-      "updatedAt": "28.07.2026, 14:41"
+      "updatedAt": "28.07.2026, 20:42"
     },
     {
       "agreement": false,
       "exam": {
-        "display": "10 августа, понедельник 14:00",
-        "isConflict": false,
+        "display": "Экономика и управление, 10 августа 14:00",
+        "isConflict": true,
         "matches": [
           "Экономика",
           "Менеджмент",
@@ -109,19 +109,19 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f2178-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 61,
+      "myPlace": 176,
       "places": 10,
       "priority": 5,
       "program": "Менеджмент (38.04.02)",
       "score": 0,
       "status": "На рассмотрении",
-      "updatedAt": "28.07.2026, 14:41"
+      "updatedAt": "28.07.2026, 20:41"
     },
     {
       "agreement": false,
       "exam": {
-        "display": "10 августа, понедельник 14:00",
-        "isConflict": false,
+        "display": "Экономика и управление, 10 августа 14:00",
+        "isConflict": true,
         "matches": [
           "Экономика",
           "Менеджмент",
@@ -132,19 +132,19 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f21c2-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 114,
+      "myPlace": 288,
       "places": 15,
       "priority": 6,
       "program": "Менеджмент (38.04.02)",
       "score": 0,
       "status": "На рассмотрении",
-      "updatedAt": "28.07.2026, 14:41"
+      "updatedAt": "28.07.2026, 20:42"
     },
     {
       "agreement": false,
       "exam": {
-        "display": "10 августа, понедельник 14:00",
-        "isConflict": false,
+        "display": "Экономика и управление, 10 августа 14:00",
+        "isConflict": true,
         "matches": [
           "Экономика",
           "Менеджмент",
@@ -155,19 +155,19 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f227b-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 98,
+      "myPlace": 272,
       "places": 7,
       "priority": 7,
       "program": "Менеджмент (38.04.02)",
       "score": 0,
       "status": "На рассмотрении",
-      "updatedAt": "28.07.2026, 14:41"
+      "updatedAt": "28.07.2026, 20:42"
     },
     {
       "agreement": false,
       "exam": {
-        "display": "10 августа, понедельник 14:00",
-        "isConflict": false,
+        "display": "Экономика и управление, 10 августа 14:00",
+        "isConflict": true,
         "matches": [
           "Экономика",
           "Менеджмент",
@@ -178,18 +178,18 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f2ab8-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 124,
+      "myPlace": 306,
       "places": 17,
       "priority": 8,
       "program": "Финансы и кредит (38.04.08)",
       "score": 0,
       "status": "На рассмотрении",
-      "updatedAt": "28.07.2026, 14:41"
+      "updatedAt": "28.07.2026, 20:42"
     },
     {
       "agreement": false,
       "exam": {
-        "display": "8 августа, суббота 10:00",
+        "display": "Государственное и муниципальное управление, 8 августа 10:00",
         "isConflict": false,
         "matches": [
           "Государственное и муниципальное управление"
@@ -199,18 +199,18 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f237e-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 71,
+      "myPlace": 169,
       "places": 9,
       "priority": 9,
       "program": "Государственное и муниципальное управление (38.04.04)",
       "score": 0,
       "status": "На рассмотрении",
-      "updatedAt": "28.07.2026, 14:41"
+      "updatedAt": "28.07.2026, 20:42"
     },
     {
       "agreement": false,
       "exam": {
-        "display": "8 августа, суббота 10:00",
+        "display": "Государственное и муниципальное управление, 8 августа 10:00",
         "isConflict": false,
         "matches": [
           "Государственное и муниципальное управление"
@@ -220,18 +220,18 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f2437-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 48,
+      "myPlace": 117,
       "places": 5,
       "priority": 10,
       "program": "Государственное и муниципальное управление (38.04.04)",
       "score": 0,
       "status": "На рассмотрении",
-      "updatedAt": "28.07.2026, 14:41"
+      "updatedAt": "28.07.2026, 20:42"
     },
     {
       "agreement": false,
       "exam": {
-        "display": "14 августа, пятница 14:00",
+        "display": "Управление персоналом / Товароведение, 14 августа 14:00",
         "isConflict": true,
         "matches": [
           "Товароведение",
@@ -242,90 +242,106 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f22ea-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 53,
+      "myPlace": 155,
       "places": 10,
       "priority": 11,
       "program": "Управление персоналом (38.04.03)",
       "score": 0,
       "status": "На рассмотрении",
-      "updatedAt": "28.07.2026, 14:41"
+      "updatedAt": "28.07.2026, 20:42"
     },
     {
       "agreement": false,
       "exam": {
-        "display": "15 августа, суббота 10:00",
-        "isConflict": false,
+        "display": "Реклама и коммуникации, 15 августа 10:00",
+        "isConflict": true,
         "matches": [
-          "Реклама и связи с общественностью"
+          "Реклама и связи с общественностью",
+          "Медиакоммуникации"
         ]
       },
       "faculty": "ВШКИ",
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f2b96-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 114,
+      "myPlace": 281,
       "places": 20,
       "priority": 12,
       "program": "Реклама и связи с общественностью (42.04.01)",
       "score": 0,
       "status": "На рассмотрении",
-      "updatedAt": "28.07.2026, 14:41"
+      "updatedAt": "28.07.2026, 20:41"
     },
     {
       "agreement": false,
       "exam": {
-        "display": "13 августа, четверг 14:00",
-        "isConflict": false,
+        "display": "Информационные системы и технологии, 13 августа 14:00",
+        "isConflict": true,
         "matches": [
-          "Информационные системы и технологии"
+          "Информационные системы и технологии",
+          "Прикладная информатика"
         ]
       },
       "faculty": "ВШКМС",
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f1bfa-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 59,
+      "myPlace": 219,
       "places": 25,
       "priority": 13,
       "program": "Информационные системы и технологии (09.04.02)",
       "score": 0,
       "status": "На рассмотрении",
-      "updatedAt": "28.07.2026, 14:41"
+      "updatedAt": "28.07.2026, 20:41"
     },
     {
       "agreement": false,
-      "exam": null,
+      "exam": {
+        "display": "Информационные системы и технологии, 13 августа 14:00",
+        "isConflict": true,
+        "matches": [
+          "Информационные системы и технологии",
+          "Прикладная информатика"
+        ]
+      },
       "faculty": "ВШКМС",
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f1c8e-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 70,
+      "myPlace": 264,
       "places": 33,
       "priority": 14,
       "program": "Прикладная информатика (09.04.03)",
       "score": 0,
       "status": "На рассмотрении",
-      "updatedAt": "28.07.2026, 14:41"
+      "updatedAt": "28.07.2026, 20:41"
     },
     {
       "agreement": false,
-      "exam": null,
+      "exam": {
+        "display": "Информационные системы и технологии, 13 августа 14:00",
+        "isConflict": true,
+        "matches": [
+          "Информационные системы и технологии",
+          "Прикладная информатика"
+        ]
+      },
       "faculty": "Форсайт",
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f1cd8-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 55,
+      "myPlace": 163,
       "places": 24,
       "priority": 15,
       "program": "Прикладная информатика (09.04.03)",
       "score": 0,
       "status": "На рассмотрении",
-      "updatedAt": "28.07.2026, 14:41"
+      "updatedAt": "28.07.2026, 20:42"
     },
     {
       "agreement": false,
       "exam": {
-        "display": "7 августа, пятница 10:00",
+        "display": "Бизнес-информатика, 7 августа 10:00",
         "isConflict": false,
         "matches": [
           "Бизнес-информатика"
@@ -335,34 +351,41 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f24a6-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 55,
+      "myPlace": 186,
       "places": 10,
       "priority": 16,
       "program": "Бизнес-информатика (38.04.05)",
       "score": 0,
       "status": "На рассмотрении",
-      "updatedAt": "28.07.2026, 14:41"
+      "updatedAt": "28.07.2026, 20:41"
     },
     {
       "agreement": false,
-      "exam": null,
+      "exam": {
+        "display": "Реклама и коммуникации, 15 августа 10:00",
+        "isConflict": true,
+        "matches": [
+          "Реклама и связи с общественностью",
+          "Медиакоммуникации"
+        ]
+      },
       "faculty": "ИПАМ",
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f2c2a-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 132,
+      "myPlace": 297,
       "places": 30,
       "priority": 17,
       "program": "Медиакоммуникации (42.04.05)",
       "score": 0,
       "status": "На рассмотрении",
-      "updatedAt": "28.07.2026, 14:41"
+      "updatedAt": "28.07.2026, 20:42"
     },
     {
       "agreement": false,
       "exam": {
-        "display": "10 августа, понедельник 14:00",
-        "isConflict": false,
+        "display": "Экономика и управление, 10 августа 14:00",
+        "isConflict": true,
         "matches": [
           "Экономика",
           "Менеджмент",
@@ -373,19 +396,19 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f220c-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 153,
+      "myPlace": 369,
       "places": 15,
       "priority": 18,
       "program": "Менеджмент (38.04.02)",
       "score": 0,
       "status": "На рассмотрении",
-      "updatedAt": "28.07.2026, 14:41"
+      "updatedAt": "28.07.2026, 20:41"
     },
     {
       "agreement": false,
       "exam": {
-        "display": "10 августа, понедельник 14:00",
-        "isConflict": false,
+        "display": "Экономика и управление, 10 августа 14:00",
+        "isConflict": true,
         "matches": [
           "Экономика",
           "Менеджмент",
@@ -396,19 +419,19 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "e2db4933-39a8-11f1-8dbe-5cba2c649f58",
-      "myPlace": 87,
+      "myPlace": 240,
       "places": 14,
       "priority": 19,
       "program": "Менеджмент (38.04.02)",
       "score": 0,
       "status": "На рассмотрении",
-      "updatedAt": "28.07.2026, 14:42"
+      "updatedAt": "28.07.2026, 20:42"
     },
     {
       "agreement": false,
       "exam": {
-        "display": "10 августа, понедельник 14:00",
-        "isConflict": false,
+        "display": "Экономика и управление, 10 августа 14:00",
+        "isConflict": true,
         "matches": [
           "Экономика",
           "Менеджмент",
@@ -419,19 +442,19 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "663533eb-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 111,
+      "myPlace": 282,
       "places": 8,
       "priority": 20,
       "program": "Экономика (38.04.01)",
       "score": 0,
       "status": "На рассмотрении",
-      "updatedAt": "28.07.2026, 14:42"
+      "updatedAt": "28.07.2026, 20:42"
     },
     {
       "agreement": false,
       "exam": {
-        "display": "10 августа, понедельник 14:00",
-        "isConflict": false,
+        "display": "Экономика и управление, 10 августа 14:00",
+        "isConflict": true,
         "matches": [
           "Экономика",
           "Менеджмент",
@@ -442,19 +465,19 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f202b-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 99,
+      "myPlace": 213,
       "places": 10,
       "priority": 21,
       "program": "Экономика (38.04.01)",
       "score": 0,
       "status": "На рассмотрении",
-      "updatedAt": "28.07.2026, 14:41"
+      "updatedAt": "28.07.2026, 20:42"
     },
     {
       "agreement": false,
       "exam": {
-        "display": "10 августа, понедельник 14:00",
-        "isConflict": false,
+        "display": "Экономика и управление, 10 августа 14:00",
+        "isConflict": true,
         "matches": [
           "Экономика",
           "Менеджмент",
@@ -465,19 +488,19 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f1d6c-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 154,
+      "myPlace": 356,
       "places": 10,
       "priority": 22,
       "program": "Экономика (38.04.01)",
       "score": 0,
       "status": "На рассмотрении",
-      "updatedAt": "28.07.2026, 14:41"
+      "updatedAt": "28.07.2026, 20:42"
     },
     {
       "agreement": false,
       "exam": {
-        "display": "10 августа, понедельник 14:00",
-        "isConflict": false,
+        "display": "Экономика и управление, 10 августа 14:00",
+        "isConflict": true,
         "matches": [
           "Экономика",
           "Менеджмент",
@@ -488,18 +511,18 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f1f03-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 127,
+      "myPlace": 295,
       "places": 11,
       "priority": 23,
       "program": "Экономика (38.04.01)",
       "score": 0,
       "status": "На рассмотрении",
-      "updatedAt": "28.07.2026, 14:41"
+      "updatedAt": "28.07.2026, 20:41"
     },
     {
       "agreement": false,
       "exam": {
-        "display": "7 августа, пятница 14:00",
+        "display": "Юриспруденция / Торговое дело, 7 августа 14:00",
         "isConflict": true,
         "matches": [
           "Торговое дело",
@@ -510,18 +533,18 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f255f-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 28,
+      "myPlace": 98,
       "places": 9,
       "priority": 24,
       "program": "Торговое дело (38.04.06)",
       "score": 0,
       "status": "На рассмотрении",
-      "updatedAt": "28.07.2026, 14:41"
+      "updatedAt": "28.07.2026, 20:42"
     },
     {
       "agreement": false,
       "exam": {
-        "display": "14 августа, пятница 14:00",
+        "display": "Управление персоналом / Товароведение, 14 августа 14:00",
         "isConflict": true,
         "matches": [
           "Товароведение",
@@ -532,13 +555,13 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f2a24-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 6,
+      "myPlace": 31,
       "places": 8,
       "priority": 25,
       "program": "Товароведение (38.04.07)",
       "score": 0,
       "status": "На рассмотрении",
-      "updatedAt": "28.07.2026, 14:41"
+      "updatedAt": "28.07.2026, 20:41"
     }
   ]
 }
