@@ -7,8 +7,11 @@ const REA_ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlzcyI6InN1cGFiYXNlIiwiaWF0IjoxNzgwNjQxOTU0LCJleHAiOjIwOTYwMDE5NTR9.HK1E0UwpIPbIHK-C1HtCjoiszflge1Ul8gfD7DPicXQ";
 
 const requestHeaders = {
+  Accept: "application/json",
   apikey: REA_ANON_KEY,
   Authorization: `Bearer ${REA_ANON_KEY}`,
+  "User-Agent":
+    "Mozilla/5.0 (compatible; sait-postyplenia-data-updater/1.0; +https://laplaceram.github.io/sait_postyplenia/)",
 };
 
 const examSchedules = [
@@ -87,7 +90,16 @@ async function fetchJson(pathname) {
     throw new Error(`REA API error: ${response.status}`);
   }
 
-  return response.json();
+  const text = await response.text();
+  const contentType = response.headers.get("content-type") || "unknown";
+
+  try {
+    return JSON.parse(text);
+  } catch {
+    throw new Error(
+      `REA API returned non-JSON response: ${response.status} ${contentType} ${text.slice(0, 120)}`,
+    );
+  }
 }
 
 function mergeApplications(entrantRows, groupRows) {
