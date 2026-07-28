@@ -183,16 +183,56 @@
         justify-content: space-between;
       }
 
+      .group-card__title-block {
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+
       .group-card__faculty {
         color: var(--muted);
         font-size: 14px;
         margin: 0 0 6px;
       }
 
+      .group-card__heading-row {
+        align-items: flex-start;
+        display: flex;
+        gap: 14px;
+        justify-content: space-between;
+      }
+
       .group-card h3 {
+        flex: 1 1 auto;
         font-size: 20px;
         line-height: 1.25;
         margin: 0;
+        min-width: 0;
+      }
+
+      .exam-time {
+        background: #f8fafc;
+        border: 1px solid #dbe5f1;
+        border-radius: 8px;
+        color: #203047;
+        flex: 0 0 auto;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.25;
+        max-width: 280px;
+        padding: 8px 10px;
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .exam-time[data-conflict="true"] {
+        background: #fff1f2;
+        border-color: #fecdd3;
+        color: #be123c;
+      }
+
+      .exam-time[data-empty="true"] {
+        color: var(--muted);
+        font-weight: 600;
       }
 
       .status-pill {
@@ -274,6 +314,17 @@
         .status-pill {
           white-space: normal;
         }
+
+        .group-card__heading-row {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .exam-time {
+          max-width: 100%;
+          text-align: left;
+          white-space: normal;
+        }
       }
     </style>
   </head>
@@ -331,9 +382,55 @@
         Authorization: `Bearer ${REA_ANON_KEY}`,
       };
 
+      const examSchedules = [
+        {
+          display: "7 августа, пятница 10:00",
+          isConflict: false,
+          matches: ["Бизнес-информатика"],
+        },
+        {
+          display: "7 августа, пятница 14:00",
+          isConflict: true,
+          matches: ["Торговое дело", "Юриспруденция"],
+        },
+        {
+          display: "8 августа, суббота 10:00",
+          isConflict: false,
+          matches: ["Государственное и муниципальное управление"],
+        },
+        {
+          display: "10 августа, понедельник 14:00",
+          isConflict: false,
+          matches: ["Экономика", "Менеджмент", "Финансы и кредит"],
+        },
+        {
+          display: "13 августа, четверг 14:00",
+          isConflict: false,
+          matches: ["Информационные системы и технологии"],
+        },
+        {
+          display: "14 августа, пятница 14:00",
+          isConflict: true,
+          matches: ["Товароведение", "Управление персоналом"],
+        },
+        {
+          display: "15 августа, суббота 10:00",
+          isConflict: false,
+          matches: ["Реклама и связи с общественностью"],
+        },
+      ];
+
       const contentElement = document.querySelector("#content");
       const refreshNoteElement = document.querySelector("#refresh-note");
       const summaryElement = document.querySelector("#summary");
+
+      function getExamSchedule(program) {
+        return (
+          examSchedules.find((schedule) =>
+            schedule.matches.some((match) => program.includes(match)),
+          ) ?? null
+        );
+      }
 
       function formatDate(value) {
         if (!value) {
@@ -387,9 +484,14 @@
         return entrantRows
           .map((entrant) => {
             const group = groupsById.get(entrant.competitive_group_id);
+            const program =
+              group?.speciality_name ||
+              group?.competitive_group_name ||
+              "Конкурсная группа";
 
             return {
               agreement: entrant.agreement,
+              exam: getExamSchedule(program),
               faculty:
                 group?.faculty_short_name ||
                 group?.faculty_name ||
@@ -400,10 +502,7 @@
               myPlace: entrant.rating,
               places: group?.admission_volume ?? null,
               priority: entrant.priority,
-              program:
-                group?.speciality_name ||
-                group?.competitive_group_name ||
-                "Конкурсная группа",
+              program,
               score: entrant.sum_mark,
               status: entrant.application_status || "Статус не указан",
               updatedAt: formatDate(entrant.date_of_list || group?.updated_at),
@@ -449,9 +548,18 @@
                 (group) => `
                   <article class="group-card">
                     <div class="group-card__main">
-                      <div>
+                      <div class="group-card__title-block">
                         <p class="group-card__faculty">${escapeHtml(group.faculty)}</p>
-                        <h3>${escapeHtml(group.program)}</h3>
+                        <div class="group-card__heading-row">
+                          <h3>${escapeHtml(group.program)}</h3>
+                          <span
+                            class="exam-time"
+                            ${group.exam?.isConflict ? 'data-conflict="true"' : ""}
+                            ${group.exam ? "" : 'data-empty="true"'}
+                          >
+                            ${escapeHtml(group.exam?.display ?? "Дата не указана")}
+                          </span>
+                        </div>
                       </div>
                       <span class="status-pill">${escapeHtml(group.status)}</span>
                     </div>

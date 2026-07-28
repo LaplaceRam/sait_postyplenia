@@ -49,6 +49,12 @@ test("keeps the GitHub Pages artifact on the selected UKP", async () => {
   assert.match(page, new RegExp(`const APPLICANT_UKP = "${expectedUkp}"`));
   assert.match(docs, new RegExp(`const APPLICANT_UKP = "${expectedUkp}"`));
   assert.match(docs, new RegExp(`УКП ${expectedUkp}`));
+  assert.match(page, /7 августа, пятница 14:00/);
+  assert.match(page, /14 августа, пятница 14:00/);
+  assert.match(page, /Дата не указана/);
+  assert.match(docs, /7 августа, пятница 14:00/);
+  assert.match(docs, /14 августа, пятница 14:00/);
+  assert.match(docs, /data-conflict="true"/);
   assert.doesNotMatch(page, /2294268/);
   assert.doesNotMatch(docs, /2294268/);
 });

@@ -186,16 +186,56 @@ button {
   justify-content: space-between;
 }
 
+.group-card__title-block {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
 .group-card__faculty {
   color: var(--muted);
   font-size: 14px;
   margin: 0 0 6px;
 }
 
+.group-card__heading-row {
+  align-items: flex-start;
+  display: flex;
+  gap: 14px;
+  justify-content: space-between;
+}
+
 .group-card h3 {
+  flex: 1 1 auto;
   font-size: 20px;
   line-height: 1.25;
   margin: 0;
+  min-width: 0;
+}
+
+.exam-time {
+  background: #f8fafc;
+  border: 1px solid #dbe5f1;
+  border-radius: 8px;
+  color: #203047;
+  flex: 0 0 auto;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.25;
+  max-width: 280px;
+  padding: 8px 10px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.exam-time[data-conflict="true"] {
+  background: #fff1f2;
+  border-color: #fecdd3;
+  color: #be123c;
+}
+
+.exam-time[data-empty="true"] {
+  color: var(--muted);
+  font-weight: 600;
 }
 
 .status-pill {
@@ -275,6 +315,17 @@ button {
   }
 
   .status-pill {
+    white-space: normal;
+  }
+
+  .group-card__heading-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .exam-time {
+    max-width: 100%;
+    text-align: left;
     white-space: normal;
   }
 }

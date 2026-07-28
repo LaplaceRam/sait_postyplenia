@@ -28,9 +28,15 @@ type GroupRow = {
   updated_at: string | null;
 };
 
+type ExamSchedule = {
+  display: string;
+  isConflict: boolean;
+};
+
 type ApplicationGroup = {
   id: string;
   agreement: boolean | null;
+  exam: ExamSchedule | null;
   faculty: string;
   form: string;
   funding: string;
@@ -55,6 +61,56 @@ const requestHeaders = {
   apikey: REA_ANON_KEY,
   Authorization: `Bearer ${REA_ANON_KEY}`,
 };
+
+const examSchedules: Array<{
+  display: string;
+  isConflict: boolean;
+  matches: string[];
+}> = [
+  {
+    display: "7 августа, пятница 10:00",
+    isConflict: false,
+    matches: ["Бизнес-информатика"],
+  },
+  {
+    display: "7 августа, пятница 14:00",
+    isConflict: true,
+    matches: ["Торговое дело", "Юриспруденция"],
+  },
+  {
+    display: "8 августа, суббота 10:00",
+    isConflict: false,
+    matches: ["Государственное и муниципальное управление"],
+  },
+  {
+    display: "10 августа, понедельник 14:00",
+    isConflict: false,
+    matches: ["Экономика", "Менеджмент", "Финансы и кредит"],
+  },
+  {
+    display: "13 августа, четверг 14:00",
+    isConflict: false,
+    matches: ["Информационные системы и технологии"],
+  },
+  {
+    display: "14 августа, пятница 14:00",
+    isConflict: true,
+    matches: ["Товароведение", "Управление персоналом"],
+  },
+  {
+    display: "15 августа, суббота 10:00",
+    isConflict: false,
+    matches: ["Реклама и связи с общественностью"],
+  },
+];
+
+function getExamSchedule(program: string): ExamSchedule | null {
+  return (
+    examSchedules.find((schedule) =>
+      schedule.matches.some((match) => program.includes(match)),
+    ) ?? null
+  );
+}
 
 function formatDate(value: string | null) {
   if (!value) {
@@ -112,9 +168,14 @@ function mergeApplications(entrantRows: EntrantRow[], groupRows: GroupRow[]) {
   return entrantRows
     .map((entrant) => {
       const group = groupsById.get(entrant.competitive_group_id);
+      const program =
+        group?.speciality_name ||
+        group?.competitive_group_name ||
+        "Конкурсная группа";
 
       return {
         agreement: entrant.agreement,
+        exam: getExamSchedule(program),
         faculty:
           group?.faculty_short_name ||
           group?.faculty_name ||
@@ -125,10 +186,7 @@ function mergeApplications(entrantRows: EntrantRow[], groupRows: GroupRow[]) {
         myPlace: entrant.rating,
         places: group?.admission_volume ?? null,
         priority: entrant.priority,
-        program:
-          group?.speciality_name ||
-          group?.competitive_group_name ||
-          "Конкурсная группа",
+        program,
         score: entrant.sum_mark,
         status: entrant.application_status || "Статус не указан",
         updatedAt: formatDate(entrant.date_of_list || group?.updated_at || null),
@@ -275,9 +333,18 @@ export default function Home() {
               {visibleGroups.map((group) => (
                 <article className="group-card" key={group.id}>
                   <div className="group-card__main">
-                    <div>
+                    <div className="group-card__title-block">
                       <p className="group-card__faculty">{group.faculty}</p>
-                      <h3>{group.program}</h3>
+                      <div className="group-card__heading-row">
+                        <h3>{group.program}</h3>
+                        <span
+                          className="exam-time"
+                          data-conflict={group.exam?.isConflict || undefined}
+                          data-empty={group.exam ? undefined : true}
+                        >
+                          {group.exam?.display ?? "Дата не указана"}
+                        </span>
+                      </div>
                     </div>
                     <span className="status-pill">{group.status}</span>
                   </div>
