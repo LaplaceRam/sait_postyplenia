@@ -195,17 +195,18 @@
       }
 
       .group-card__heading-row {
-        align-items: baseline;
+        align-items: flex-start;
         display: flex;
-        gap: 45px;
+        flex-direction: column;
+        gap: 9px;
         justify-content: flex-start;
       }
 
       .group-card h3 {
-        flex: 0 1 auto;
         font-size: 20px;
         line-height: 1.25;
         margin: 0;
+        max-width: 100%;
         min-width: 0;
       }
 
@@ -214,16 +215,17 @@
         border: 1px solid #dbe5f1;
         border-radius: 8px;
         color: #203047;
-        flex: 0 0 auto;
+        display: inline-block;
         font-size: 14px;
         font-weight: 700;
         line-height: 1.25;
-        max-width: 280px;
+        max-width: 100%;
+        overflow-wrap: anywhere;
         padding: 8px 10px;
         position: relative;
         text-align: left;
         top: -1px;
-        white-space: nowrap;
+        white-space: normal;
       }
 
       .exam-time[data-conflict="true"] {
@@ -318,15 +320,8 @@
           white-space: normal;
         }
 
-        .group-card__heading-row {
-          flex-direction: column;
-          gap: 10px;
-        }
-
         .exam-time {
-          max-width: 100%;
           text-align: left;
-          white-space: normal;
         }
       }
     </style>
