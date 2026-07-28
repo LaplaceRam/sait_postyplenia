@@ -43,7 +43,7 @@ type ApplicationGroup = {
   updatedAt: string;
 };
 
-const APPLICANT_UKP = "2294268";
+const APPLICANT_UKP = "2420603";
 const REFRESH_INTERVAL_MS = 10 * 60 * 1000;
 const REA_API_URL = "https://abitrating.rea.ru/rest/v1";
 const REA_ANON_KEY =
