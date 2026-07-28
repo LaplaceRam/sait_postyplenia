@@ -1,15 +1,14 @@
 {
   "applicantUkp": "2420603",
-  "fetchedAt": "2026-07-28T19:04:09.591Z",
+  "fetchedAt": "2026-07-28T19:22:13.928Z",
   "source": "REA",
   "groups": [
     {
       "agreement": false,
       "exam": {
-        "display": "Юриспруденция / Торговое дело, 7 августа 14:00",
+        "display": "Юриспруденция, 7 августа 14:00",
         "isConflict": true,
         "matches": [
-          "Торговое дело",
           "Юриспруденция"
         ]
       },
@@ -29,7 +28,7 @@
       "agreement": false,
       "exam": {
         "display": "Экономика и управление, 10 августа 14:00",
-        "isConflict": true,
+        "isConflict": false,
         "matches": [
           "Экономика",
           "Менеджмент",
@@ -52,7 +51,7 @@
       "agreement": false,
       "exam": {
         "display": "Экономика и управление, 10 августа 14:00",
-        "isConflict": true,
+        "isConflict": false,
         "matches": [
           "Экономика",
           "Менеджмент",
@@ -75,7 +74,7 @@
       "agreement": false,
       "exam": {
         "display": "Экономика и управление, 10 августа 14:00",
-        "isConflict": true,
+        "isConflict": false,
         "matches": [
           "Экономика",
           "Менеджмент",
@@ -98,7 +97,7 @@
       "agreement": false,
       "exam": {
         "display": "Экономика и управление, 10 августа 14:00",
-        "isConflict": true,
+        "isConflict": false,
         "matches": [
           "Экономика",
           "Менеджмент",
@@ -121,7 +120,7 @@
       "agreement": false,
       "exam": {
         "display": "Экономика и управление, 10 августа 14:00",
-        "isConflict": true,
+        "isConflict": false,
         "matches": [
           "Экономика",
           "Менеджмент",
@@ -144,7 +143,7 @@
       "agreement": false,
       "exam": {
         "display": "Экономика и управление, 10 августа 14:00",
-        "isConflict": true,
+        "isConflict": false,
         "matches": [
           "Экономика",
           "Менеджмент",
@@ -167,7 +166,7 @@
       "agreement": false,
       "exam": {
         "display": "Экономика и управление, 10 августа 14:00",
-        "isConflict": true,
+        "isConflict": false,
         "matches": [
           "Экономика",
           "Менеджмент",
@@ -231,10 +230,9 @@
     {
       "agreement": false,
       "exam": {
-        "display": "Управление персоналом / Товароведение, 14 августа 14:00",
+        "display": "Управление персоналом, 14 августа 14:00",
         "isConflict": true,
         "matches": [
-          "Товароведение",
           "Управление персоналом"
         ]
       },
@@ -254,7 +252,7 @@
       "agreement": false,
       "exam": {
         "display": "Реклама и коммуникации, 15 августа 10:00",
-        "isConflict": true,
+        "isConflict": false,
         "matches": [
           "Реклама и связи с общественностью",
           "Медиакоммуникации"
@@ -276,7 +274,7 @@
       "agreement": false,
       "exam": {
         "display": "Информационные системы и технологии, 13 августа 14:00",
-        "isConflict": true,
+        "isConflict": false,
         "matches": [
           "Информационные системы и технологии",
           "Прикладная информатика"
@@ -298,7 +296,7 @@
       "agreement": false,
       "exam": {
         "display": "Информационные системы и технологии, 13 августа 14:00",
-        "isConflict": true,
+        "isConflict": false,
         "matches": [
           "Информационные системы и технологии",
           "Прикладная информатика"
@@ -320,7 +318,7 @@
       "agreement": false,
       "exam": {
         "display": "Информационные системы и технологии, 13 августа 14:00",
-        "isConflict": true,
+        "isConflict": false,
         "matches": [
           "Информационные системы и технологии",
           "Прикладная информатика"
@@ -363,7 +361,7 @@
       "agreement": false,
       "exam": {
         "display": "Реклама и коммуникации, 15 августа 10:00",
-        "isConflict": true,
+        "isConflict": false,
         "matches": [
           "Реклама и связи с общественностью",
           "Медиакоммуникации"
@@ -385,7 +383,7 @@
       "agreement": false,
       "exam": {
         "display": "Экономика и управление, 10 августа 14:00",
-        "isConflict": true,
+        "isConflict": false,
         "matches": [
           "Экономика",
           "Менеджмент",
@@ -408,7 +406,7 @@
       "agreement": false,
       "exam": {
         "display": "Экономика и управление, 10 августа 14:00",
-        "isConflict": true,
+        "isConflict": false,
         "matches": [
           "Экономика",
           "Менеджмент",
@@ -431,7 +429,7 @@
       "agreement": false,
       "exam": {
         "display": "Экономика и управление, 10 августа 14:00",
-        "isConflict": true,
+        "isConflict": false,
         "matches": [
           "Экономика",
           "Менеджмент",
@@ -454,7 +452,7 @@
       "agreement": false,
       "exam": {
         "display": "Экономика и управление, 10 августа 14:00",
-        "isConflict": true,
+        "isConflict": false,
         "matches": [
           "Экономика",
           "Менеджмент",
@@ -477,7 +475,7 @@
       "agreement": false,
       "exam": {
         "display": "Экономика и управление, 10 августа 14:00",
-        "isConflict": true,
+        "isConflict": false,
         "matches": [
           "Экономика",
           "Менеджмент",
@@ -500,7 +498,7 @@
       "agreement": false,
       "exam": {
         "display": "Экономика и управление, 10 августа 14:00",
-        "isConflict": true,
+        "isConflict": false,
         "matches": [
           "Экономика",
           "Менеджмент",
@@ -522,11 +520,10 @@
     {
       "agreement": false,
       "exam": {
-        "display": "Юриспруденция / Торговое дело, 7 августа 14:00",
+        "display": "Торговое дело, 7 августа 14:00",
         "isConflict": true,
         "matches": [
-          "Торговое дело",
-          "Юриспруденция"
+          "Торговое дело"
         ]
       },
       "faculty": "ВШЭиБ",
@@ -544,11 +541,10 @@
     {
       "agreement": false,
       "exam": {
-        "display": "Управление персоналом / Товароведение, 14 августа 14:00",
+        "display": "Товароведение, 14 августа 14:00",
         "isConflict": true,
         "matches": [
-          "Товароведение",
-          "Управление персоналом"
+          "Товароведение"
         ]
       },
       "faculty": "ВИШНМТ",

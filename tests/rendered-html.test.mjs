@@ -50,10 +50,13 @@ test("keeps the GitHub Pages artifact on the selected UKP", async () => {
   assert.match(docs, new RegExp(`const APPLICANT_UKP = "${expectedUkp}"`));
   assert.match(docs, new RegExp(`УКП ${expectedUkp}`));
   assert.match(page, /Дата не указана/);
-  assert.match(docs, /Юриспруденция \/ Торговое дело, 7 августа 14:00/);
+  assert.match(docs, /Юриспруденция, 7 августа 14:00/);
+  assert.match(docs, /Торговое дело, 7 августа 14:00/);
   assert.match(docs, /Информационные системы и технологии, 13 августа 14:00/);
   assert.match(docs, /Реклама и коммуникации, 15 августа 10:00/);
   assert.match(docs, /data-conflict="true"/);
+  assert.doesNotMatch(docs, /Юриспруденция \/ Торговое дело/);
+  assert.doesNotMatch(docs, /Управление персоналом \/ Товароведение/);
   assert.match(page, /data\/rea-2420603\.json/);
   assert.match(docs, /data\/rea-2420603\.json/);
   assert.match(page, /abitrating\.rea\.ru/);
@@ -77,15 +80,35 @@ test("ships saved REA data for GitHub Pages", async () => {
   assert.equal(docsData.groups[0].program, "Юриспруденция (40.04.01)");
   assert.equal(
     docsData.groups[0].exam.display,
-    "Юриспруденция / Торговое дело, 7 августа 14:00",
+    "Юриспруденция, 7 августа 14:00",
   );
   assert.ok(docsData.groups.every((group) => group.exam));
+  assert.equal(
+    docsData.groups.filter((group) => group.exam.isConflict).length,
+    4,
+  );
   assert.ok(
     docsData.groups.some(
       (group) =>
         group.program === "Товароведение (38.04.07)" &&
-        group.exam.display ===
-          "Управление персоналом / Товароведение, 14 августа 14:00",
+        group.exam.display === "Товароведение, 14 августа 14:00" &&
+        group.exam.isConflict,
+    ),
+  );
+  assert.ok(
+    docsData.groups.some(
+      (group) =>
+        group.program === "Торговое дело (38.04.06)" &&
+        group.exam.display === "Торговое дело, 7 августа 14:00" &&
+        group.exam.isConflict,
+    ),
+  );
+  assert.ok(
+    docsData.groups.some(
+      (group) =>
+        group.program === "Управление персоналом (38.04.03)" &&
+        group.exam.display === "Управление персоналом, 14 августа 14:00" &&
+        group.exam.isConflict,
     ),
   );
   assert.ok(
@@ -93,14 +116,34 @@ test("ships saved REA data for GitHub Pages", async () => {
       (group) =>
         group.program === "Прикладная информатика (09.04.03)" &&
         group.exam.display ===
-          "Информационные системы и технологии, 13 августа 14:00",
+          "Информационные системы и технологии, 13 августа 14:00" &&
+        !group.exam.isConflict,
     ),
   );
   assert.ok(
     docsData.groups.some(
       (group) =>
         group.program === "Медиакоммуникации (42.04.05)" &&
-        group.exam.display === "Реклама и коммуникации, 15 августа 10:00",
+        group.exam.display === "Реклама и коммуникации, 15 августа 10:00" &&
+        !group.exam.isConflict,
     ),
+  );
+  assert.ok(
+    docsData.groups
+      .filter((group) => group.program === "Экономика (38.04.01)")
+      .every(
+        (group) =>
+          group.exam.display === "Экономика и управление, 10 августа 14:00" &&
+          !group.exam.isConflict,
+      ),
+  );
+  assert.ok(
+    docsData.groups
+      .filter((group) => group.program === "Менеджмент (38.04.02)")
+      .every(
+        (group) =>
+          group.exam.display === "Экономика и управление, 10 августа 14:00" &&
+          !group.exam.isConflict,
+      ),
   );
 });
