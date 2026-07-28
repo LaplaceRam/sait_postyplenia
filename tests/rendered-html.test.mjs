@@ -55,8 +55,12 @@ test("keeps the GitHub Pages artifact on the selected UKP", async () => {
   assert.match(docs, /data-conflict="true"/);
   assert.match(page, /data\/rea-2420603\.json/);
   assert.match(docs, /data\/rea-2420603\.json/);
-  assert.doesNotMatch(page, /abitrating\.rea\.ru/);
-  assert.doesNotMatch(docs, /abitrating\.rea\.ru/);
+  assert.match(page, /abitrating\.rea\.ru/);
+  assert.match(docs, /abitrating\.rea\.ru/);
+  assert.match(page, /apikey: REA_ANON_KEY/);
+  assert.match(docs, /apikey: REA_ANON_KEY/);
+  assert.doesNotMatch(page, /Authorization/);
+  assert.doesNotMatch(docs, /Authorization/);
   assert.doesNotMatch(page, /2294268/);
   assert.doesNotMatch(docs, /2294268/);
 });

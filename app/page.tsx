@@ -2,6 +2,32 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 
+type EntrantRow = {
+  agreement: boolean | null;
+  application_status: string | null;
+  competitive_group_id: string;
+  date_of_list: string | null;
+  paid_contract: string | null;
+  priority: number | null;
+  rating: number | null;
+  sum_mark: number | null;
+  unique_code_profile: string;
+};
+
+type GroupRow = {
+  admission_volume: number | null;
+  branch_name: string | null;
+  competitive_group_id: string;
+  competitive_group_name: string | null;
+  education_form_name: string | null;
+  educational_level_name: string | null;
+  faculty_name: string | null;
+  faculty_short_name: string | null;
+  place_type_name: string | null;
+  speciality_name: string | null;
+  updated_at: string | null;
+};
+
 type ExamSchedule = {
   display: string;
   isConflict: boolean;
@@ -32,8 +58,86 @@ type TrackerData = {
 const APPLICANT_UKP = "2420603";
 const DATA_URL = "data/rea-2420603.json";
 const REFRESH_INTERVAL_MS = 10 * 60 * 1000;
+const REA_API_URL = "https://abitrating.rea.ru/rest/v1";
+const REA_ANON_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlzcyI6InN1cGFiYXNlIiwiaWF0IjoxNzgwNjQxOTU0LCJleHAiOjIwOTYwMDE5NTR9.HK1E0UwpIPbIHK-C1HtCjoiszflge1Ul8gfD7DPicXQ";
 
 const universities = [{ id: "rea", label: "РЭУ" }];
+
+const requestHeaders = {
+  apikey: REA_ANON_KEY,
+};
+
+const examSchedules: Array<{
+  display: string;
+  isConflict: boolean;
+  matches: string[];
+}> = [
+  {
+    display: "7 августа, пятница 10:00",
+    isConflict: false,
+    matches: ["Бизнес-информатика"],
+  },
+  {
+    display: "7 августа, пятница 14:00",
+    isConflict: true,
+    matches: ["Торговое дело", "Юриспруденция"],
+  },
+  {
+    display: "8 августа, суббота 10:00",
+    isConflict: false,
+    matches: ["Государственное и муниципальное управление"],
+  },
+  {
+    display: "10 августа, понедельник 14:00",
+    isConflict: false,
+    matches: ["Экономика", "Менеджмент", "Финансы и кредит"],
+  },
+  {
+    display: "13 августа, четверг 14:00",
+    isConflict: false,
+    matches: ["Информационные системы и технологии"],
+  },
+  {
+    display: "14 августа, пятница 14:00",
+    isConflict: true,
+    matches: ["Товароведение", "Управление персоналом"],
+  },
+  {
+    display: "15 августа, суббота 10:00",
+    isConflict: false,
+    matches: ["Реклама и связи с общественностью"],
+  },
+];
+
+function getExamSchedule(program: string): ExamSchedule | null {
+  return (
+    examSchedules.find((schedule) =>
+      schedule.matches.some((match) => program.includes(match)),
+    ) ?? null
+  );
+}
+
+function formatDate(value: string | null) {
+  if (!value) {
+    return "нет данных";
+  }
+
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+    return "нет данных";
+  }
+
+  return new Intl.DateTimeFormat("ru-RU", {
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    month: "2-digit",
+    timeZone: "Europe/Moscow",
+    year: "numeric",
+  }).format(date);
+}
 
 function formatCheckTime(value: Date | null) {
   if (!value) {
@@ -62,6 +166,86 @@ async function fetchTrackerData(): Promise<TrackerData> {
   return response.json() as Promise<TrackerData>;
 }
 
+async function fetchJson<T>(path: string): Promise<T> {
+  const response = await fetch(`${REA_API_URL}${path}`, {
+    headers: requestHeaders,
+  });
+
+  if (!response.ok) {
+    throw new Error(`REA API error: ${response.status}`);
+  }
+
+  return response.json() as Promise<T>;
+}
+
+function mergeApplications(entrantRows: EntrantRow[], groupRows: GroupRow[]) {
+  const groupsById = new Map(
+    groupRows.map((group) => [group.competitive_group_id, group]),
+  );
+
+  return entrantRows
+    .map((entrant) => {
+      const group = groupsById.get(entrant.competitive_group_id);
+      const program =
+        group?.speciality_name ||
+        group?.competitive_group_name ||
+        "Конкурсная группа";
+
+      return {
+        agreement: entrant.agreement,
+        exam: getExamSchedule(program),
+        faculty:
+          group?.faculty_short_name ||
+          group?.faculty_name ||
+          "Факультет не указан",
+        form: group?.education_form_name || "форма не указана",
+        funding: group?.place_type_name || "тип места не указан",
+        id: entrant.competitive_group_id,
+        myPlace: entrant.rating,
+        places: group?.admission_volume ?? null,
+        priority: entrant.priority,
+        program,
+        score: entrant.sum_mark,
+        status: entrant.application_status || "Статус не указан",
+        updatedAt: formatDate(entrant.date_of_list || group?.updated_at || null),
+      };
+    })
+    .sort((left, right) => {
+      const leftPriority = left.priority ?? Number.MAX_SAFE_INTEGER;
+      const rightPriority = right.priority ?? Number.MAX_SAFE_INTEGER;
+
+      if (leftPriority !== rightPriority) {
+        return leftPriority - rightPriority;
+      }
+
+      return (left.myPlace ?? Number.MAX_SAFE_INTEGER) -
+        (right.myPlace ?? Number.MAX_SAFE_INTEGER);
+    });
+}
+
+async function fetchLiveReaApplications(): Promise<TrackerData> {
+  const entrantRows = await fetchJson<EntrantRow[]>(
+    `/entrants?select=competitive_group_id,rating,agreement,date_of_list,sum_mark,priority,application_status,paid_contract,unique_code_profile&unique_code_profile=eq.${APPLICANT_UKP}`,
+  );
+
+  const ids = entrantRows
+    .map((entrant) => entrant.competitive_group_id)
+    .filter(Boolean)
+    .join(",");
+
+  const groupRows = ids
+    ? await fetchJson<GroupRow[]>(
+        `/all_competitive_group_stats?select=*&competitive_group_id=in.(${ids})`,
+      )
+    : [];
+
+  return {
+    applicantUkp: APPLICANT_UKP,
+    fetchedAt: new Date().toISOString(),
+    groups: mergeApplications(entrantRows, groupRows),
+  };
+}
+
 export default function Home() {
   const [activeUniversity, setActiveUniversity] = useState("rea");
   const [groups, setGroups] = useState<ApplicationGroup[]>([]);
@@ -78,7 +262,13 @@ export default function Home() {
       setError(null);
 
       try {
-        const data = await fetchTrackerData();
+        let data: TrackerData;
+
+        try {
+          data = await fetchLiveReaApplications();
+        } catch {
+          data = await fetchTrackerData();
+        }
 
         if (data.applicantUkp !== APPLICANT_UKP) {
           throw new Error("Unexpected UKP in tracker data");
