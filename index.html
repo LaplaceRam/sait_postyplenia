@@ -376,6 +376,13 @@
       const APPLICANT_UKP = "2420603";
       const DATA_URL = "data/rea-2420603.json";
       const REFRESH_INTERVAL_MS = 10 * 60 * 1000;
+      const REA_API_URL = "https://abitrating.rea.ru/rest/v1";
+      const REA_ANON_KEY =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlzcyI6InN1cGFiYXNlIiwiaWF0IjoxNzgwNjQxOTU0LCJleHAiOjIwOTYwMDE5NTR9.HK1E0UwpIPbIHK-C1HtCjoiszflge1Ul8gfD7DPicXQ";
+
+      const requestHeaders = {
+        apikey: REA_ANON_KEY,
+      };
 
       const examSchedules = [
         {
@@ -457,6 +464,18 @@
           second: "2-digit",
           timeZone: "Europe/Moscow",
         }).format(value)} (на сайте)`;
+      }
+
+      async function fetchJson(path) {
+        const response = await fetch(`${REA_API_URL}${path}`, {
+          headers: requestHeaders,
+        });
+
+        if (!response.ok) {
+          throw new Error(`REA API error: ${response.status}`);
+        }
+
+        return response.json();
       }
 
       async function fetchTrackerData() {
@@ -596,7 +615,32 @@
 
       async function loadReaApplications() {
         try {
-          const data = await fetchTrackerData();
+          let data;
+
+          try {
+            const entrantRows = await fetchJson(
+              `/entrants?select=competitive_group_id,rating,agreement,date_of_list,sum_mark,priority,application_status,paid_contract,unique_code_profile&unique_code_profile=eq.${APPLICANT_UKP}`,
+            );
+
+            const ids = entrantRows
+              .map((entrant) => entrant.competitive_group_id)
+              .filter(Boolean)
+              .join(",");
+
+            const groupRows = ids
+              ? await fetchJson(
+                  `/all_competitive_group_stats?select=*&competitive_group_id=in.(${ids})`,
+                )
+              : [];
+
+            data = {
+              applicantUkp: APPLICANT_UKP,
+              fetchedAt: new Date().toISOString(),
+              groups: mergeApplications(entrantRows, groupRows),
+            };
+          } catch {
+            data = await fetchTrackerData();
+          }
 
           if (data.applicantUkp !== APPLICANT_UKP) {
             throw new Error("Unexpected UKP in tracker data");
