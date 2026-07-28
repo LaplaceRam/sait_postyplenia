@@ -374,15 +374,8 @@
 
     <script>
       const APPLICANT_UKP = "2420603";
+      const DATA_URL = "data/rea-2420603.json";
       const REFRESH_INTERVAL_MS = 10 * 60 * 1000;
-      const REA_API_URL = "https://abitrating.rea.ru/rest/v1";
-      const REA_ANON_KEY =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlzcyI6InN1cGFiYXNlIiwiaWF0IjoxNzgwNjQxOTU0LCJleHAiOjIwOTYwMDE5NTR9.HK1E0UwpIPbIHK-C1HtCjoiszflge1Ul8gfD7DPicXQ";
-
-      const requestHeaders = {
-        apikey: REA_ANON_KEY,
-        Authorization: `Bearer ${REA_ANON_KEY}`,
-      };
 
       const examSchedules = [
         {
@@ -456,23 +449,23 @@
       }
 
       function formatCheckTime(value) {
-        return `Сайт проверил API: ${new Intl.DateTimeFormat("ru-RU", {
+        return `Данные РЭУ обновлены: ${new Intl.DateTimeFormat("ru-RU", {
           day: "2-digit",
           hour: "2-digit",
           minute: "2-digit",
           month: "2-digit",
           second: "2-digit",
           timeZone: "Europe/Moscow",
-        }).format(value)}`;
+        }).format(value)} (на сайте)`;
       }
 
-      async function fetchJson(path) {
-        const response = await fetch(`${REA_API_URL}${path}`, {
-          headers: requestHeaders,
+      async function fetchTrackerData() {
+        const response = await fetch(`${DATA_URL}?t=${Date.now()}`, {
+          cache: "no-store",
         });
 
         if (!response.ok) {
-          throw new Error(`REA API error: ${response.status}`);
+          throw new Error(`Tracker data error: ${response.status}`);
         }
 
         return response.json();
@@ -603,30 +596,20 @@
 
       async function loadReaApplications() {
         try {
-          const entrantRows = await fetchJson(
-            `/entrants?select=competitive_group_id,rating,agreement,date_of_list,sum_mark,priority,application_status,paid_contract,unique_code_profile&unique_code_profile=eq.${APPLICANT_UKP}`,
-          );
+          const data = await fetchTrackerData();
 
-          if (entrantRows.length === 0) {
-            renderGroups([]);
-            return;
+          if (data.applicantUkp !== APPLICANT_UKP) {
+            throw new Error("Unexpected UKP in tracker data");
           }
 
-          const ids = entrantRows
-            .map((entrant) => entrant.competitive_group_id)
-            .join(",");
-
-          const groupRows = await fetchJson(
-            `/all_competitive_group_stats?select=*&competitive_group_id=in.(${ids})`,
+          renderGroups(data.groups);
+          refreshNoteElement.textContent = formatCheckTime(
+            data.fetchedAt ? new Date(data.fetchedAt) : new Date(),
           );
-
-          renderGroups(mergeApplications(entrantRows, groupRows));
         } catch {
           summaryElement.textContent = "Ошибка";
           contentElement.innerHTML =
-            '<p class="state-message">Не удалось загрузить данные РЭУ. Попробуй обновить страницу.</p>';
-        } finally {
-          refreshNoteElement.textContent = formatCheckTime(new Date());
+            '<p class="state-message">Не удалось загрузить сохранённые данные РЭУ. Попробуй обновить страницу.</p>';
         }
       }
 

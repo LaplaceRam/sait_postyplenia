@@ -49,12 +49,33 @@ test("keeps the GitHub Pages artifact on the selected UKP", async () => {
   assert.match(page, new RegExp(`const APPLICANT_UKP = "${expectedUkp}"`));
   assert.match(docs, new RegExp(`const APPLICANT_UKP = "${expectedUkp}"`));
   assert.match(docs, new RegExp(`УКП ${expectedUkp}`));
-  assert.match(page, /7 августа, пятница 14:00/);
-  assert.match(page, /14 августа, пятница 14:00/);
   assert.match(page, /Дата не указана/);
   assert.match(docs, /7 августа, пятница 14:00/);
   assert.match(docs, /14 августа, пятница 14:00/);
   assert.match(docs, /data-conflict="true"/);
+  assert.match(page, /data\/rea-2420603\.json/);
+  assert.match(docs, /data\/rea-2420603\.json/);
+  assert.doesNotMatch(page, /abitrating\.rea\.ru/);
+  assert.doesNotMatch(docs, /abitrating\.rea\.ru/);
   assert.doesNotMatch(page, /2294268/);
   assert.doesNotMatch(docs, /2294268/);
+});
+
+test("ships saved REA data for GitHub Pages", async () => {
+  const docsData = JSON.parse(
+    await readFile(new URL("../docs/data/rea-2420603.json", import.meta.url), "utf8"),
+  );
+
+  assert.equal(docsData.applicantUkp, expectedUkp);
+  assert.equal(docsData.source, "REA");
+  assert.equal(docsData.groups.length, 25);
+  assert.equal(docsData.groups[0].program, "Юриспруденция (40.04.01)");
+  assert.equal(docsData.groups[0].exam.display, "7 августа, пятница 14:00");
+  assert.ok(
+    docsData.groups.some(
+      (group) =>
+        group.program === "Товароведение (38.04.07)" &&
+        group.exam.display === "14 августа, пятница 14:00",
+    ),
+  );
 });

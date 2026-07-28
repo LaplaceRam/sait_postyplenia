@@ -1,0 +1,41 @@
+name: Update REA data
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-rea-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Fetch REA data
+        run: node scripts/fetch-rea-data.mjs
+
+      - name: Commit updated data
+        run: |
+          if git diff --quiet -- docs/data/rea-2420603.json public/data/rea-2420603.json; then
+            echo "REA data did not change."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/rea-2420603.json public/data/rea-2420603.json
+          git commit -m "Update REA admission data"
+          git push

@@ -2,32 +2,6 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 
-type EntrantRow = {
-  agreement: boolean | null;
-  application_status: string | null;
-  competitive_group_id: string;
-  date_of_list: string | null;
-  paid_contract: string | null;
-  priority: number | null;
-  rating: number | null;
-  sum_mark: number | null;
-  unique_code_profile: string;
-};
-
-type GroupRow = {
-  admission_volume: number | null;
-  branch_name: string | null;
-  competitive_group_id: string;
-  competitive_group_name: string | null;
-  education_form_name: string | null;
-  educational_level_name: string | null;
-  faculty_name: string | null;
-  faculty_short_name: string | null;
-  place_type_name: string | null;
-  speciality_name: string | null;
-  updated_at: string | null;
-};
-
 type ExamSchedule = {
   display: string;
   isConflict: boolean;
@@ -49,160 +23,43 @@ type ApplicationGroup = {
   updatedAt: string;
 };
 
-const APPLICANT_UKP = "2420603";
-const REFRESH_INTERVAL_MS = 10 * 60 * 1000;
-const REA_API_URL = "https://abitrating.rea.ru/rest/v1";
-const REA_ANON_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlzcyI6InN1cGFiYXNlIiwiaWF0IjoxNzgwNjQxOTU0LCJleHAiOjIwOTYwMDE5NTR9.HK1E0UwpIPbIHK-C1HtCjoiszflge1Ul8gfD7DPicXQ";
-
-const universities = [{ id: "rea", label: "РЭУ" }];
-
-const requestHeaders = {
-  apikey: REA_ANON_KEY,
-  Authorization: `Bearer ${REA_ANON_KEY}`,
+type TrackerData = {
+  applicantUkp: string;
+  fetchedAt: string | null;
+  groups: ApplicationGroup[];
 };
 
-const examSchedules: Array<{
-  display: string;
-  isConflict: boolean;
-  matches: string[];
-}> = [
-  {
-    display: "7 августа, пятница 10:00",
-    isConflict: false,
-    matches: ["Бизнес-информатика"],
-  },
-  {
-    display: "7 августа, пятница 14:00",
-    isConflict: true,
-    matches: ["Торговое дело", "Юриспруденция"],
-  },
-  {
-    display: "8 августа, суббота 10:00",
-    isConflict: false,
-    matches: ["Государственное и муниципальное управление"],
-  },
-  {
-    display: "10 августа, понедельник 14:00",
-    isConflict: false,
-    matches: ["Экономика", "Менеджмент", "Финансы и кредит"],
-  },
-  {
-    display: "13 августа, четверг 14:00",
-    isConflict: false,
-    matches: ["Информационные системы и технологии"],
-  },
-  {
-    display: "14 августа, пятница 14:00",
-    isConflict: true,
-    matches: ["Товароведение", "Управление персоналом"],
-  },
-  {
-    display: "15 августа, суббота 10:00",
-    isConflict: false,
-    matches: ["Реклама и связи с общественностью"],
-  },
-];
+const APPLICANT_UKP = "2420603";
+const DATA_URL = "data/rea-2420603.json";
+const REFRESH_INTERVAL_MS = 10 * 60 * 1000;
 
-function getExamSchedule(program: string): ExamSchedule | null {
-  return (
-    examSchedules.find((schedule) =>
-      schedule.matches.some((match) => program.includes(match)),
-    ) ?? null
-  );
-}
-
-function formatDate(value: string | null) {
-  if (!value) {
-    return "нет данных";
-  }
-
-  const date = new Date(value);
-
-  if (Number.isNaN(date.getTime())) {
-    return "нет данных";
-  }
-
-  return new Intl.DateTimeFormat("ru-RU", {
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    month: "2-digit",
-    timeZone: "Europe/Moscow",
-    year: "numeric",
-  }).format(date);
-}
+const universities = [{ id: "rea", label: "РЭУ" }];
 
 function formatCheckTime(value: Date | null) {
   if (!value) {
     return "Автообновление каждые 10 минут";
   }
 
-  return `Сайт проверил API: ${new Intl.DateTimeFormat("ru-RU", {
+  return `Данные РЭУ обновлены: ${new Intl.DateTimeFormat("ru-RU", {
     day: "2-digit",
     hour: "2-digit",
     minute: "2-digit",
     month: "2-digit",
     second: "2-digit",
     timeZone: "Europe/Moscow",
-  }).format(value)}`;
+  }).format(value)} (на сайте)`;
 }
 
-async function fetchJson<T>(path: string): Promise<T> {
-  const response = await fetch(`${REA_API_URL}${path}`, {
-    headers: requestHeaders,
+async function fetchTrackerData(): Promise<TrackerData> {
+  const response = await fetch(`${DATA_URL}?t=${Date.now()}`, {
+    cache: "no-store",
   });
 
   if (!response.ok) {
-    throw new Error(`REA API error: ${response.status}`);
+    throw new Error(`Tracker data error: ${response.status}`);
   }
 
-  return response.json() as Promise<T>;
-}
-
-function mergeApplications(entrantRows: EntrantRow[], groupRows: GroupRow[]) {
-  const groupsById = new Map(
-    groupRows.map((group) => [group.competitive_group_id, group]),
-  );
-
-  return entrantRows
-    .map((entrant) => {
-      const group = groupsById.get(entrant.competitive_group_id);
-      const program =
-        group?.speciality_name ||
-        group?.competitive_group_name ||
-        "Конкурсная группа";
-
-      return {
-        agreement: entrant.agreement,
-        exam: getExamSchedule(program),
-        faculty:
-          group?.faculty_short_name ||
-          group?.faculty_name ||
-          "Факультет не указан",
-        form: group?.education_form_name || "форма не указана",
-        funding: group?.place_type_name || "тип места не указан",
-        id: entrant.competitive_group_id,
-        myPlace: entrant.rating,
-        places: group?.admission_volume ?? null,
-        priority: entrant.priority,
-        program,
-        score: entrant.sum_mark,
-        status: entrant.application_status || "Статус не указан",
-        updatedAt: formatDate(entrant.date_of_list || group?.updated_at || null),
-      };
-    })
-    .sort((left, right) => {
-      const leftPriority = left.priority ?? Number.MAX_SAFE_INTEGER;
-      const rightPriority = right.priority ?? Number.MAX_SAFE_INTEGER;
-
-      if (leftPriority !== rightPriority) {
-        return leftPriority - rightPriority;
-      }
-
-      return (left.myPlace ?? Number.MAX_SAFE_INTEGER) -
-        (right.myPlace ?? Number.MAX_SAFE_INTEGER);
-    });
+  return response.json() as Promise<TrackerData>;
 }
 
 export default function Home() {
@@ -221,37 +78,25 @@ export default function Home() {
       setError(null);
 
       try {
-        const entrantRows = await fetchJson<EntrantRow[]>(
-          `/entrants?select=competitive_group_id,rating,agreement,date_of_list,sum_mark,priority,application_status,paid_contract,unique_code_profile&unique_code_profile=eq.${APPLICANT_UKP}`,
-        );
+        const data = await fetchTrackerData();
 
-        if (entrantRows.length === 0) {
-          if (isMounted) {
-            setGroups([]);
-          }
-
-          return;
+        if (data.applicantUkp !== APPLICANT_UKP) {
+          throw new Error("Unexpected UKP in tracker data");
         }
 
-        const ids = entrantRows
-          .map((entrant) => entrant.competitive_group_id)
-          .join(",");
-
-        const groupRows = await fetchJson<GroupRow[]>(
-          `/all_competitive_group_stats?select=*&competitive_group_id=in.(${ids})`,
-        );
-
         if (isMounted) {
-          setGroups(mergeApplications(entrantRows, groupRows));
+          setGroups(data.groups);
+          setLastCheckedAt(data.fetchedAt ? new Date(data.fetchedAt) : new Date());
         }
       } catch {
         if (isMounted) {
-          setError("Не удалось загрузить данные РЭУ. Попробуй обновить страницу.");
+          setError(
+            "Не удалось загрузить сохранённые данные РЭУ. Попробуй обновить страницу.",
+          );
         }
       } finally {
         if (isMounted) {
           hasLoadedRef.current = true;
-          setLastCheckedAt(new Date());
           setIsLoading(false);
         }
       }
@@ -352,19 +197,19 @@ export default function Home() {
                   <dl className="group-metrics">
                     <div>
                       <dt>Приоритет</dt>
-                      <dd>{group.priority ?? "—"}</dd>
+                      <dd>{group.priority ?? "-"}</dd>
                     </div>
                     <div>
                       <dt>Моё место в списках</dt>
-                      <dd>{group.myPlace ?? "—"}</dd>
+                      <dd>{group.myPlace ?? "-"}</dd>
                     </div>
                     <div>
                       <dt>Количество мест</dt>
-                      <dd>{group.places ?? "—"}</dd>
+                      <dd>{group.places ?? "-"}</dd>
                     </div>
                     <div>
                       <dt>Баллы</dt>
-                      <dd>{group.score ?? "—"}</dd>
+                      <dd>{group.score ?? "-"}</dd>
                     </div>
                     <div>
                       <dt>Согласие</dt>
