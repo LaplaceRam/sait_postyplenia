@@ -10,6 +10,8 @@ const requestHeaders = {
   Accept: "application/json",
   apikey: REA_ANON_KEY,
   Authorization: `Bearer ${REA_ANON_KEY}`,
+  Origin: "https://abitrating.rea.ru",
+  Referer: "https://abitrating.rea.ru/",
   "User-Agent":
     "Mozilla/5.0 (compatible; sait-postyplenia-data-updater/1.0; +https://laplaceram.github.io/sait_postyplenia/)",
 };
