@@ -90,6 +90,19 @@ function formatDate(value) {
   }).format(date);
 }
 
+function getCampus(group) {
+  const campusSource = [
+    group?.branch_name,
+    group?.competitive_group_name,
+    group?.faculty_name,
+    group?.faculty_short_name,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  return campusSource.includes("Оренбург") ? "orenburg" : "moscow";
+}
+
 async function fetchJson(pathname) {
   const response = await fetch(`${REA_API_URL}${pathname}`, {
     headers: requestHeaders,
@@ -126,6 +139,7 @@ function mergeApplications(entrantRows, groupRows) {
 
       return {
         agreement: entrant.agreement,
+        campus: getCampus(group),
         exam: getExamSchedule(program),
         faculty:
           group?.faculty_short_name ||

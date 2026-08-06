@@ -36,6 +36,7 @@ type ExamSchedule = {
 type ApplicationGroup = {
   id: string;
   agreement: boolean | null;
+  campus: "moscow" | "orenburg";
   exam: ExamSchedule | null;
   faculty: string;
   form: string;
@@ -62,7 +63,10 @@ const REA_API_URL = "https://abitrating.rea.ru/rest/v1";
 const REA_ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlzcyI6InN1cGFiYXNlIiwiaWF0IjoxNzgwNjQxOTU0LCJleHAiOjIwOTYwMDE5NTR9.HK1E0UwpIPbIHK-C1HtCjoiszflge1Ul8gfD7DPicXQ";
 
-const universities = [{ id: "rea", label: "РЭУ" }];
+const universities = [
+  { id: "moscow", label: "РЭУ Москва", title: "РЭУ Москва" },
+  { id: "orenburg", label: "РЭУ Оренбург", title: "РЭУ Оренбург" },
+] as const;
 
 const requestHeaders = {
   apikey: REA_ANON_KEY,
@@ -164,6 +168,19 @@ function formatCheckTime(value: Date | null) {
   }).format(value)} (на сайте)`;
 }
 
+function getCampus(group: GroupRow | undefined): ApplicationGroup["campus"] {
+  const campusSource = [
+    group?.branch_name,
+    group?.competitive_group_name,
+    group?.faculty_name,
+    group?.faculty_short_name,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  return campusSource.includes("Оренбург") ? "orenburg" : "moscow";
+}
+
 async function fetchTrackerData(): Promise<TrackerData> {
   const response = await fetch(`${DATA_URL}?t=${Date.now()}`, {
     cache: "no-store",
@@ -203,6 +220,7 @@ function mergeApplications(entrantRows: EntrantRow[], groupRows: GroupRow[]) {
 
       return {
         agreement: entrant.agreement,
+        campus: getCampus(group),
         exam: getExamSchedule(program),
         faculty:
           group?.faculty_short_name ||
@@ -257,7 +275,7 @@ async function fetchLiveReaApplications(): Promise<TrackerData> {
 }
 
 export default function Home() {
-  const [activeUniversity, setActiveUniversity] = useState("rea");
+  const [activeUniversity, setActiveUniversity] = useState("moscow");
   const [groups, setGroups] = useState<ApplicationGroup[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -315,12 +333,11 @@ export default function Home() {
   }, []);
 
   const visibleGroups = useMemo(() => {
-    if (activeUniversity === "rea") {
-      return groups;
-    }
-
-    return [];
+    return groups.filter((group) => group.campus === activeUniversity);
   }, [activeUniversity, groups]);
+  const activeTab =
+    universities.find((university) => university.id === activeUniversity) ??
+    universities[0];
 
   return (
     <main className="min-h-screen bg-[#f4f7fb] text-[#111827]">
@@ -352,7 +369,7 @@ export default function Home() {
           <div className="groups-panel__top">
             <div>
               <p className="section-label">Конкурсные группы</p>
-              <h2 id="rea-heading">РЭУ им. Г.В. Плеханова</h2>
+              <h2 id="rea-heading">{activeTab.title}</h2>
             </div>
             <div className="summary-chip">
               {isLoading ? "Загрузка" : `${visibleGroups.length} заявлений`}
@@ -369,7 +386,7 @@ export default function Home() {
 
           {!isLoading && !error && visibleGroups.length === 0 ? (
             <p className="state-message">
-              По этому УКП пока не найдено конкурсных групп.
+              По этому УКП пока не найдено конкурсных групп для вкладки {activeTab.label}.
             </p>
           ) : null}
 

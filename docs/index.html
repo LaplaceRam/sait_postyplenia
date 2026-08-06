@@ -342,9 +342,18 @@
             aria-pressed="true"
             class="university-tabs__button"
             data-active="true"
+            data-campus-tab="moscow"
             type="button"
           >
-            РЭУ
+            РЭУ Москва
+          </button>
+          <button
+            aria-pressed="false"
+            class="university-tabs__button"
+            data-campus-tab="orenburg"
+            type="button"
+          >
+            РЭУ Оренбург
           </button>
         </nav>
 
@@ -352,7 +361,7 @@
           <div class="groups-panel__top">
             <div>
               <p class="section-label">Конкурсные группы</p>
-              <h2 id="rea-heading">РЭУ им. Г.В. Плеханова</h2>
+              <h2 id="rea-heading">РЭУ Москва</h2>
             </div>
             <div class="summary-chip" id="summary">Загрузка</div>
           </div>
@@ -375,6 +384,12 @@
       const REA_API_URL = "https://abitrating.rea.ru/rest/v1";
       const REA_ANON_KEY =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlzcyI6InN1cGFiYXNlIiwiaWF0IjoxNzgwNjQxOTU0LCJleHAiOjIwOTYwMDE5NTR9.HK1E0UwpIPbIHK-C1HtCjoiszflge1Ul8gfD7DPicXQ";
+      const universities = [
+        { id: "moscow", label: "РЭУ Москва", title: "РЭУ Москва" },
+        { id: "orenburg", label: "РЭУ Оренбург", title: "РЭУ Оренбург" },
+      ];
+      let activeUniversity = "moscow";
+      let lastTrackerData = null;
 
       const requestHeaders = {
         apikey: REA_ANON_KEY,
@@ -429,8 +444,10 @@
       ];
 
       const contentElement = document.querySelector("#content");
+      const headingElement = document.querySelector("#rea-heading");
       const refreshNoteElement = document.querySelector("#refresh-note");
       const summaryElement = document.querySelector("#summary");
+      const tabButtons = document.querySelectorAll("[data-campus-tab]");
 
       function getExamSchedule(program) {
         return (
@@ -472,6 +489,19 @@
         }).format(value)} (на сайте)`;
       }
 
+      function getCampus(group) {
+        const campusSource = [
+          group?.branch_name,
+          group?.competitive_group_name,
+          group?.faculty_name,
+          group?.faculty_short_name,
+        ]
+          .filter(Boolean)
+          .join(" ");
+
+        return campusSource.includes("Оренбург") ? "orenburg" : "moscow";
+      }
+
       async function fetchJson(path) {
         const response = await fetch(`${REA_API_URL}${path}`, {
           headers: requestHeaders,
@@ -511,6 +541,7 @@
 
             return {
               agreement: entrant.agreement,
+              campus: getCampus(group),
               exam: getExamSchedule(program),
               faculty:
                 group?.faculty_short_name ||
@@ -552,12 +583,37 @@
           .replaceAll("'", "&#039;");
       }
 
+      function getActiveTab() {
+        return (
+          universities.find((university) => university.id === activeUniversity) ||
+          universities[0]
+        );
+      }
+
+      function getVisibleGroups() {
+        return (lastTrackerData?.groups || []).filter(
+          (group) => group.campus === activeUniversity,
+        );
+      }
+
+      function renderActiveTab() {
+        const activeTab = getActiveTab();
+
+        headingElement.textContent = activeTab.title;
+        tabButtons.forEach((button) => {
+          const isActive = button.dataset.campusTab === activeUniversity;
+          button.dataset.active = isActive ? "true" : "false";
+          button.setAttribute("aria-pressed", String(isActive));
+        });
+        renderGroups(getVisibleGroups());
+      }
+
       function renderGroups(groups) {
         summaryElement.textContent = `${groups.length} заявлений`;
 
         if (groups.length === 0) {
           contentElement.innerHTML =
-            '<p class="state-message">По этому УКП пока не найдено конкурсных групп.</p>';
+            `<p class="state-message">По этому УКП пока не найдено конкурсных групп для вкладки ${escapeHtml(getActiveTab().label)}.</p>`;
           return;
         }
 
@@ -652,7 +708,8 @@
             throw new Error("Unexpected UKP in tracker data");
           }
 
-          renderGroups(data.groups);
+          lastTrackerData = data;
+          renderActiveTab();
           refreshNoteElement.textContent = formatCheckTime(
             data.fetchedAt ? new Date(data.fetchedAt) : new Date(),
           );
@@ -662,6 +719,13 @@
             '<p class="state-message">Не удалось загрузить сохранённые данные РЭУ. Попробуй обновить страницу.</p>';
         }
       }
+
+      tabButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          activeUniversity = button.dataset.campusTab || "moscow";
+          renderActiveTab();
+        });
+      });
 
       loadReaApplications();
       window.setInterval(loadReaApplications, REFRESH_INTERVAL_MS);
