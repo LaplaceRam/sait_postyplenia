@@ -197,6 +197,13 @@ button {
   margin: 0 0 6px;
 }
 
+.group-card__profile {
+  color: #334155;
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 8px 0 0;
+}
+
 .group-card__heading-row {
   align-items: flex-start;
   display: flex;

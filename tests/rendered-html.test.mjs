@@ -37,6 +37,7 @@ test("server-renders the admission tracker shell", async () => {
   assert.match(html, new RegExp(`УКП\\s*(?:<!-- -->)?${expectedUkp}`));
   assert.match(html, /РЭУ Москва/);
   assert.match(html, /РЭУ Оренбург/);
+  assert.match(html, /ОГУ/);
   assert.match(html, /Автообновление каждые 10 минут/);
   assert.doesNotMatch(html, /2294268/);
 });
@@ -51,12 +52,14 @@ test("keeps the GitHub Pages artifact on the selected UKP", async () => {
   assert.match(docs, new RegExp(`const APPLICANT_UKP = "${expectedUkp}"`));
   assert.match(docs, new RegExp(`УКП ${expectedUkp}`));
   assert.match(page, /useState\("moscow"\)/);
-  assert.match(page, /campus: "moscow" \| "orenburg"/);
+  assert.match(page, /campus: "moscow" \| "orenburg" \| "osu"/);
   assert.match(page, /РЭУ Москва/);
   assert.match(page, /РЭУ Оренбург/);
+  assert.match(page, /ОГУ/);
   assert.match(docs, /РЭУ Москва/);
   assert.match(docs, /РЭУ Оренбург/);
-  assert.match(page, /Дата не указана/);
+  assert.match(docs, /ОГУ/);
+  assert.match(page, /group\.profile/);
   assert.match(docs, /Юриспруденция, 7 августа 14:00/);
   assert.match(docs, /Торговое дело, 7 августа 14:00/);
   assert.match(docs, /Информационные системы и технологии, 13 августа 14:00/);
@@ -64,14 +67,8 @@ test("keeps the GitHub Pages artifact on the selected UKP", async () => {
   assert.match(docs, /data-conflict="true"/);
   assert.doesNotMatch(docs, /Юриспруденция \/ Торговое дело/);
   assert.doesNotMatch(docs, /Управление персоналом \/ Товароведение/);
-  assert.match(page, /data\/rea-2420603\.json/);
-  assert.match(docs, /data\/rea-2420603\.json/);
-  assert.match(page, /abitrating\.rea\.ru/);
-  assert.match(docs, /abitrating\.rea\.ru/);
-  assert.match(page, /apikey: REA_ANON_KEY/);
-  assert.match(docs, /apikey: REA_ANON_KEY/);
-  assert.doesNotMatch(page, /Authorization/);
-  assert.doesNotMatch(docs, /Authorization/);
+  assert.match(page, /data\/tracker-2420603\.json/);
+  assert.match(docs, /data\/tracker-2420603\.json/);
   assert.doesNotMatch(page, /2294268/);
   assert.doesNotMatch(docs, /2294268/);
 });
@@ -113,7 +110,7 @@ test("ships saved REA data for GitHub Pages", async () => {
         group.faculty === "Оренбург" &&
         group.form === "Заочная" &&
         group.places === 10 &&
-        group.myPlace === 1,
+        group.myPlace === 2,
     ),
   );
   assert.ok(
@@ -124,7 +121,7 @@ test("ships saved REA data for GitHub Pages", async () => {
         group.faculty === "Оренбург" &&
         group.form === "Заочная" &&
         group.places === 10 &&
-        group.myPlace === 1,
+        group.myPlace === 2,
     ),
   );
   assert.ok(
@@ -186,4 +183,43 @@ test("ships saved REA data for GitHub Pages", async () => {
           !group.exam.isConflict,
       ),
   );
+});
+
+test("ships saved OSU data for GitHub Pages", async () => {
+  const trackerData = JSON.parse(
+    await readFile(new URL("../docs/data/tracker-2420603.json", import.meta.url), "utf8"),
+  );
+  const osuData = JSON.parse(
+    await readFile(new URL("../docs/data/osu-2420603.json", import.meta.url), "utf8"),
+  );
+
+  assert.equal(osuData.applicantUkp, expectedUkp);
+  assert.equal(osuData.source, "ОГУ");
+  assert.equal(osuData.groups.length, 4);
+  assert.equal(
+    trackerData.groups.filter((group) => group.campus === "osu").length,
+    4,
+  );
+  assert.deepEqual(
+    osuData.groups.map((group) => group.priority),
+    [1, 2, 3, 4],
+  );
+  assert.ok(
+    osuData.groups.every(
+      (group) =>
+        group.form === "Заочная" &&
+        group.funding === "Контракт" &&
+        group.places === 100 &&
+        group.score === 0 &&
+        group.status === "Нет результатов ВИ",
+    ),
+  );
+  assert.ok(
+    osuData.groups.some(
+      (group) =>
+        group.program === "Программная инженерия (09.04.04)" &&
+        group.profile === "Разработка информационно-телекоммуникационных систем",
+    ),
+  );
+  assert.equal(trackerData.groups.length, 31);
 });

@@ -36,7 +36,7 @@ type ExamSchedule = {
 type ApplicationGroup = {
   id: string;
   agreement: boolean | null;
-  campus: "moscow" | "orenburg";
+  campus: "moscow" | "orenburg" | "osu";
   exam: ExamSchedule | null;
   faculty: string;
   form: string;
@@ -44,6 +44,7 @@ type ApplicationGroup = {
   myPlace: number | null;
   places: number | null;
   priority: number | null;
+  profile?: string | null;
   program: string;
   score: number | null;
   status: string;
@@ -57,7 +58,7 @@ type TrackerData = {
 };
 
 const APPLICANT_UKP = "2420603";
-const DATA_URL = "data/rea-2420603.json";
+const DATA_URL = "data/tracker-2420603.json";
 const REFRESH_INTERVAL_MS = 10 * 60 * 1000;
 const REA_API_URL = "https://abitrating.rea.ru/rest/v1";
 const REA_ANON_KEY =
@@ -66,6 +67,7 @@ const REA_ANON_KEY =
 const universities = [
   { id: "moscow", label: "РЭУ Москва", title: "РЭУ Москва" },
   { id: "orenburg", label: "РЭУ Оренбург", title: "РЭУ Оренбург" },
+  { id: "osu", label: "ОГУ", title: "ОГУ" },
 ] as const;
 
 const requestHeaders = {
@@ -153,12 +155,12 @@ function formatDate(value: string | null) {
   }).format(date);
 }
 
-function formatCheckTime(value: Date | null) {
+function formatCheckTime(value: Date | null, universityName: string) {
   if (!value) {
     return "Автообновление каждые 10 минут";
   }
 
-  return `Данные РЭУ обновлены: ${new Intl.DateTimeFormat("ru-RU", {
+  return `Данные ${universityName} обновлены: ${new Intl.DateTimeFormat("ru-RU", {
     day: "2-digit",
     hour: "2-digit",
     minute: "2-digit",
@@ -290,13 +292,7 @@ export default function Home() {
       setError(null);
 
       try {
-        let data: TrackerData;
-
-        try {
-          data = await fetchLiveReaApplications();
-        } catch {
-          data = await fetchTrackerData();
-        }
+        const data = await fetchTrackerData();
 
         if (data.applicantUkp !== APPLICANT_UKP) {
           throw new Error("Unexpected UKP in tracker data");
@@ -309,7 +305,7 @@ export default function Home() {
       } catch {
         if (isMounted) {
           setError(
-            "Не удалось загрузить сохранённые данные РЭУ. Попробуй обновить страницу.",
+            "Не удалось загрузить сохранённые данные. Попробуй обновить страницу.",
           );
         }
       } finally {
@@ -376,7 +372,9 @@ export default function Home() {
             </div>
           </div>
 
-          <p className="refresh-note">{formatCheckTime(lastCheckedAt)}</p>
+          <p className="refresh-note">
+            {formatCheckTime(lastCheckedAt, activeTab.title)}
+          </p>
 
           {error ? <p className="state-message">{error}</p> : null}
 
@@ -399,14 +397,18 @@ export default function Home() {
                       <p className="group-card__faculty">{group.faculty}</p>
                       <div className="group-card__heading-row">
                         <h3>{group.program}</h3>
-                        <span
-                          className="exam-time"
-                          data-conflict={group.exam?.isConflict || undefined}
-                          data-empty={group.exam ? undefined : true}
-                        >
-                          {group.exam?.display ?? "Дата не указана"}
-                        </span>
+                        {group.exam ? (
+                          <span
+                            className="exam-time"
+                            data-conflict={group.exam.isConflict || undefined}
+                          >
+                            {group.exam.display}
+                          </span>
+                        ) : null}
                       </div>
+                      {group.profile ? (
+                        <p className="group-card__profile">{group.profile}</p>
+                      ) : null}
                     </div>
                     <span className="status-pill">{group.status}</span>
                   </div>
@@ -438,7 +440,9 @@ export default function Home() {
                     <span>
                       {group.funding} · {group.form}
                     </span>
-                    <span>Список РЭУ обновлён: {group.updatedAt} (на сайте)</span>
+                    <span>
+                      Список {activeTab.title} обновлён: {group.updatedAt} (на сайте)
+                    </span>
                   </div>
                 </article>
               ))}

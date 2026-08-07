@@ -1,5 +1,6 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const APPLICANT_UKP = "2420603";
 const REA_API_URL = "https://abitrating.rea.ru/rest/v1";
@@ -177,7 +178,7 @@ async function writeDataFile(filePath, data) {
   await writeFile(filePath, `${JSON.stringify(data, null, 2)}\n`, "utf8");
 }
 
-async function main() {
+export async function fetchReaData() {
   const entrantRows = await fetchJson(
     `/entrants?select=competitive_group_id,rating,agreement,date_of_list,sum_mark,priority,application_status,paid_contract,unique_code_profile&unique_code_profile=eq.${APPLICANT_UKP}`,
   );
@@ -210,9 +211,13 @@ async function main() {
   ]);
 
   console.log(`Saved ${data.groups.length} REA application groups.`);
+
+  return data;
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  fetchReaData().catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}

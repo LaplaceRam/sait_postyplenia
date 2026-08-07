@@ -194,6 +194,13 @@
         margin: 0 0 6px;
       }
 
+      .group-card__profile {
+        color: #334155;
+        font-size: 14px;
+        line-height: 1.4;
+        margin: 8px 0 0;
+      }
+
       .group-card__heading-row {
         align-items: flex-start;
         display: flex;
@@ -355,6 +362,14 @@
           >
             РЭУ Оренбург
           </button>
+          <button
+            aria-pressed="false"
+            class="university-tabs__button"
+            data-campus-tab="osu"
+            type="button"
+          >
+            ОГУ
+          </button>
         </nav>
 
         <section class="groups-panel" aria-labelledby="rea-heading">
@@ -379,7 +394,7 @@
 
     <script>
       const APPLICANT_UKP = "2420603";
-      const DATA_URL = "data/rea-2420603.json";
+      const DATA_URL = "data/tracker-2420603.json";
       const REFRESH_INTERVAL_MS = 10 * 60 * 1000;
       const REA_API_URL = "https://abitrating.rea.ru/rest/v1";
       const REA_ANON_KEY =
@@ -387,6 +402,7 @@
       const universities = [
         { id: "moscow", label: "РЭУ Москва", title: "РЭУ Москва" },
         { id: "orenburg", label: "РЭУ Оренбург", title: "РЭУ Оренбург" },
+        { id: "osu", label: "ОГУ", title: "ОГУ" },
       ];
       let activeUniversity = "moscow";
       let lastTrackerData = null;
@@ -479,7 +495,7 @@
       }
 
       function formatCheckTime(value) {
-        return `Данные РЭУ обновлены: ${new Intl.DateTimeFormat("ru-RU", {
+        return `Данные ${getActiveTab().title} обновлены: ${new Intl.DateTimeFormat("ru-RU", {
           day: "2-digit",
           hour: "2-digit",
           minute: "2-digit",
@@ -606,6 +622,9 @@
           button.setAttribute("aria-pressed", String(isActive));
         });
         renderGroups(getVisibleGroups());
+        refreshNoteElement.textContent = formatCheckTime(
+          lastTrackerData?.fetchedAt ? new Date(lastTrackerData.fetchedAt) : new Date(),
+        );
       }
 
       function renderGroups(groups) {
@@ -628,14 +647,24 @@
                         <p class="group-card__faculty">${escapeHtml(group.faculty)}</p>
                         <div class="group-card__heading-row">
                           <h3>${escapeHtml(group.program)}</h3>
+                          ${
+                            group.exam
+                              ? `
                           <span
                             class="exam-time"
                             ${group.exam?.isConflict ? 'data-conflict="true"' : ""}
-                            ${group.exam ? "" : 'data-empty="true"'}
                           >
-                            ${escapeHtml(group.exam?.display ?? "Дата не указана")}
+                            ${escapeHtml(group.exam.display)}
                           </span>
+                              `
+                              : ""
+                          }
                         </div>
+                        ${
+                          group.profile
+                            ? `<p class="group-card__profile">${escapeHtml(group.profile)}</p>`
+                            : ""
+                        }
                       </div>
                       <span class="status-pill">${escapeHtml(group.status)}</span>
                     </div>
@@ -665,7 +694,7 @@
 
                     <div class="group-card__footer">
                       <span>${escapeHtml(group.funding)} · ${escapeHtml(group.form)}</span>
-                      <span>Список РЭУ обновлён: ${escapeHtml(group.updatedAt)} (на сайте)</span>
+                      <span>Список ${escapeHtml(getActiveTab().title)} обновлён: ${escapeHtml(group.updatedAt)} (на сайте)</span>
                     </div>
                   </article>
                 `,
@@ -677,32 +706,7 @@
 
       async function loadReaApplications() {
         try {
-          let data;
-
-          try {
-            const entrantRows = await fetchJson(
-              `/entrants?select=competitive_group_id,rating,agreement,date_of_list,sum_mark,priority,application_status,paid_contract,unique_code_profile&unique_code_profile=eq.${APPLICANT_UKP}`,
-            );
-
-            const ids = entrantRows
-              .map((entrant) => entrant.competitive_group_id)
-              .filter(Boolean)
-              .join(",");
-
-            const groupRows = ids
-              ? await fetchJson(
-                  `/all_competitive_group_stats?select=*&competitive_group_id=in.(${ids})`,
-                )
-              : [];
-
-            data = {
-              applicantUkp: APPLICANT_UKP,
-              fetchedAt: new Date().toISOString(),
-              groups: mergeApplications(entrantRows, groupRows),
-            };
-          } catch {
-            data = await fetchTrackerData();
-          }
+          const data = await fetchTrackerData();
 
           if (data.applicantUkp !== APPLICANT_UKP) {
             throw new Error("Unexpected UKP in tracker data");
@@ -716,7 +720,7 @@
         } catch {
           summaryElement.textContent = "Ошибка";
           contentElement.innerHTML =
-            '<p class="state-message">Не удалось загрузить сохранённые данные РЭУ. Попробуй обновить страницу.</p>';
+            '<p class="state-message">Не удалось загрузить сохранённые данные. Попробуй обновить страницу.</p>';
         }
       }
 

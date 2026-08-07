@@ -1,7 +1,7 @@
 {
   "applicantUkp": "2420603",
-  "fetchedAt": "2026-08-07T08:40:29.132Z",
-  "source": "REA",
+  "fetchedAt": "2026-08-07T08:40:35.528Z",
+  "source": "Admissions tracker",
   "groups": [
     {
       "agreement": false,
@@ -631,6 +631,74 @@
       "score": 9,
       "status": "На рассмотрении",
       "updatedAt": "06.08.2026, 23:48"
+    },
+    {
+      "agreement": false,
+      "campus": "osu",
+      "exam": null,
+      "faculty": "Юридический факультет",
+      "form": "Заочная",
+      "funding": "Контракт",
+      "id": "osu-8457",
+      "myPlace": null,
+      "places": 100,
+      "priority": 1,
+      "profile": "Уголовный процесс, криминалистика и судебная экспертиза, теория оперативно-розыскной деятельности",
+      "program": "Юриспруденция (40.04.01)",
+      "score": 0,
+      "status": "Нет результатов ВИ",
+      "updatedAt": "07.08.2026 13:01"
+    },
+    {
+      "agreement": false,
+      "campus": "osu",
+      "exam": null,
+      "faculty": "Юридический факультет",
+      "form": "Заочная",
+      "funding": "Контракт",
+      "id": "osu-8456",
+      "myPlace": null,
+      "places": 100,
+      "priority": 2,
+      "profile": "Уголовное право, криминология, антикоррупционная деятельность",
+      "program": "Юриспруденция (40.04.01)",
+      "score": 0,
+      "status": "Нет результатов ВИ",
+      "updatedAt": "07.08.2026 13:01"
+    },
+    {
+      "agreement": false,
+      "campus": "osu",
+      "exam": null,
+      "faculty": "Институт менеджмента, экономики и предпринимательства",
+      "form": "Заочная",
+      "funding": "Контракт",
+      "id": "osu-8443",
+      "myPlace": null,
+      "places": 100,
+      "priority": 3,
+      "profile": "Экономика фирмы и отраслевых рынков",
+      "program": "Экономика (38.04.01)",
+      "score": 0,
+      "status": "Нет результатов ВИ",
+      "updatedAt": "07.08.2026 13:01"
+    },
+    {
+      "agreement": false,
+      "campus": "osu",
+      "exam": null,
+      "faculty": "Институт математики и информационных технологий",
+      "form": "Заочная",
+      "funding": "Контракт",
+      "id": "osu-8370",
+      "myPlace": null,
+      "places": 100,
+      "priority": 4,
+      "profile": "Разработка информационно-телекоммуникационных систем",
+      "program": "Программная инженерия (09.04.04)",
+      "score": 0,
+      "status": "Нет результатов ВИ",
+      "updatedAt": "07.08.2026 13:01"
     }
   ]
 }
