@@ -365,7 +365,14 @@ export default function Home() {
           <div className="groups-panel__top">
             <div>
               <p className="section-label">Конкурсные группы</p>
-              <h2 id="rea-heading">{activeTab.title}</h2>
+              <div className="groups-panel__title-row">
+                <h2 id="rea-heading">{activeTab.title}</h2>
+                {activeUniversity === "osu" ? (
+                  <span className="groups-panel__title-note">
+                    очная сдача вступительных
+                  </span>
+                ) : null}
+              </div>
             </div>
             <div className="summary-chip">
               {isLoading ? "Загрузка" : `${visibleGroups.length} заявлений`}

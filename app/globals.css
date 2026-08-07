@@ -109,6 +109,19 @@ button {
   color: #ffffff;
 }
 
+.university-tabs__button[data-campus-tab="osu"] {
+  background: #fff1f2;
+  border-color: #fecdd3;
+  color: #be123c;
+}
+
+.university-tabs__button[data-campus-tab="osu"]:hover,
+.university-tabs__button[data-campus-tab="osu"][data-active="true"] {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #ffffff;
+}
+
 .groups-panel {
   background: #ffffff;
   border: 1px solid var(--border);
@@ -138,6 +151,23 @@ button {
   font-size: 24px;
   line-height: 1.2;
   margin: 0;
+}
+
+.groups-panel__title-row {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.groups-panel__title-note {
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  border-radius: 999px;
+  color: #be123c;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 9px;
 }
 
 .summary-chip {
