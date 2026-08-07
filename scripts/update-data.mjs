@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fetchOsuData } from "./fetch-osu-data.mjs";
 import { fetchReaData } from "./fetch-rea-data.mjs";
@@ -8,8 +8,20 @@ async function writeDataFile(filePath, data) {
   await writeFile(filePath, `${JSON.stringify(data, null, 2)}\n`, "utf8");
 }
 
+async function loadDataWithFallback(name, fetchData, fallbackPath) {
+  try {
+    return await fetchData();
+  } catch (error) {
+    console.warn(`${name} update failed. Keeping the last saved data.`, error);
+    return JSON.parse(await readFile(fallbackPath, "utf8"));
+  }
+}
+
 async function main() {
-  const [rea, osu] = await Promise.all([fetchReaData(), fetchOsuData()]);
+  const [rea, osu] = await Promise.all([
+    loadDataWithFallback("REA", fetchReaData, "docs/data/rea-2420603.json"),
+    loadDataWithFallback("OSU", fetchOsuData, "docs/data/osu-2420603.json"),
+  ]);
   const data = {
     applicantUkp: rea.applicantUkp,
     fetchedAt: new Date().toISOString(),
