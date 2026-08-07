@@ -111,6 +111,19 @@
         color: #ffffff;
       }
 
+      .university-tabs__button[data-campus-tab="osu"] {
+        background: #fff1f2;
+        border-color: #fecdd3;
+        color: #be123c;
+      }
+
+      .university-tabs__button[data-campus-tab="osu"]:hover,
+      .university-tabs__button[data-campus-tab="osu"][data-active="true"] {
+        background: var(--navy);
+        border-color: var(--navy);
+        color: #ffffff;
+      }
+
       .groups-panel {
         background: #ffffff;
         border: 1px solid var(--border);
@@ -140,6 +153,23 @@
         font-size: 24px;
         line-height: 1.2;
         margin: 0;
+      }
+
+      .groups-panel__title-row {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .groups-panel__title-note {
+        background: #fff1f2;
+        border: 1px solid #fecdd3;
+        border-radius: 999px;
+        color: #be123c;
+        font-size: 13px;
+        font-weight: 700;
+        padding: 6px 9px;
       }
 
       .summary-chip {
@@ -376,7 +406,12 @@
           <div class="groups-panel__top">
             <div>
               <p class="section-label">Конкурсные группы</p>
-              <h2 id="rea-heading">РЭУ Москва</h2>
+              <div class="groups-panel__title-row">
+                <h2 id="rea-heading">РЭУ Москва</h2>
+                <span class="groups-panel__title-note" hidden id="title-note">
+                  очная сдача вступительных
+                </span>
+              </div>
             </div>
             <div class="summary-chip" id="summary">Загрузка</div>
           </div>
@@ -464,6 +499,7 @@
       const refreshNoteElement = document.querySelector("#refresh-note");
       const summaryElement = document.querySelector("#summary");
       const tabButtons = document.querySelectorAll("[data-campus-tab]");
+      const titleNoteElement = document.querySelector("#title-note");
 
       function getExamSchedule(program) {
         return (
@@ -616,6 +652,7 @@
         const activeTab = getActiveTab();
 
         headingElement.textContent = activeTab.title;
+        titleNoteElement.hidden = activeUniversity !== "osu";
         tabButtons.forEach((button) => {
           const isActive = button.dataset.campusTab === activeUniversity;
           button.dataset.active = isActive ? "true" : "false";
