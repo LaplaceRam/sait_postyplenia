@@ -1,6 +1,6 @@
 {
   "applicantUkp": "2420603",
-  "fetchedAt": "2026-08-15T16:42:52.677Z",
+  "fetchedAt": "2026-08-15T17:01:22.717Z",
   "source": "Admissions tracker",
   "groups": [
     {
@@ -25,7 +25,7 @@
       "program": "Экономика",
       "score": 62,
       "status": "На рассмотрении",
-      "updatedAt": "15.08.2026, 17:56"
+      "updatedAt": "15.08.2026, 19:56"
     },
     {
       "agreement": false,
@@ -47,7 +47,7 @@
       "program": "Юриспруденция",
       "score": 65,
       "status": "Участвует в конкурсе",
-      "updatedAt": "15.08.2026, 17:56"
+      "updatedAt": "15.08.2026, 19:56"
     },
     {
       "agreement": false,
@@ -71,7 +71,7 @@
       "program": "Менеджмент",
       "score": 62,
       "status": "На рассмотрении",
-      "updatedAt": "15.08.2026, 17:56"
+      "updatedAt": "15.08.2026, 19:56"
     },
     {
       "agreement": false,
@@ -94,8 +94,8 @@
       "priority": 2,
       "program": "Менеджмент",
       "score": 62,
-      "status": "На рассмотрении",
-      "updatedAt": "15.08.2026, 17:56"
+      "status": "Участвует в конкурсе",
+      "updatedAt": "15.08.2026, 19:56"
     },
     {
       "agreement": false,
@@ -118,8 +118,8 @@
       "priority": 3,
       "program": "Экономика",
       "score": 62,
-      "status": "На рассмотрении",
-      "updatedAt": "15.08.2026, 17:56"
+      "status": "Участвует в конкурсе",
+      "updatedAt": "15.08.2026, 19:56"
     },
     {
       "agreement": false,
@@ -142,8 +142,8 @@
       "priority": 4,
       "program": "Экономика",
       "score": 62,
-      "status": "На рассмотрении",
-      "updatedAt": "15.08.2026, 17:56"
+      "status": "Участвует в конкурсе",
+      "updatedAt": "15.08.2026, 19:56"
     },
     {
       "agreement": false,
@@ -166,8 +166,8 @@
       "priority": 5,
       "program": "Менеджмент",
       "score": 62,
-      "status": "На рассмотрении",
-      "updatedAt": "15.08.2026, 17:56"
+      "status": "Участвует в конкурсе",
+      "updatedAt": "15.08.2026, 19:56"
     },
     {
       "agreement": false,
@@ -190,8 +190,8 @@
       "priority": 6,
       "program": "Менеджмент",
       "score": 62,
-      "status": "На рассмотрении",
-      "updatedAt": "15.08.2026, 17:56"
+      "status": "Участвует в конкурсе",
+      "updatedAt": "15.08.2026, 19:56"
     },
     {
       "agreement": false,
@@ -214,8 +214,8 @@
       "priority": 7,
       "program": "Менеджмент",
       "score": 62,
-      "status": "На рассмотрении",
-      "updatedAt": "15.08.2026, 17:56"
+      "status": "Участвует в конкурсе",
+      "updatedAt": "15.08.2026, 19:56"
     },
     {
       "agreement": false,
@@ -238,8 +238,8 @@
       "priority": 8,
       "program": "Финансы и кредит",
       "score": 62,
-      "status": "На рассмотрении",
-      "updatedAt": "15.08.2026, 17:56"
+      "status": "Участвует в конкурсе",
+      "updatedAt": "15.08.2026, 19:56"
     },
     {
       "agreement": false,
@@ -261,7 +261,7 @@
       "program": "Государственное и муниципальное управление",
       "score": 16,
       "status": "На рассмотрении",
-      "updatedAt": "15.08.2026, 17:56"
+      "updatedAt": "15.08.2026, 19:56"
     },
     {
       "agreement": false,
@@ -283,7 +283,7 @@
       "program": "Государственное и муниципальное управление",
       "score": 16,
       "status": "На рассмотрении",
-      "updatedAt": "15.08.2026, 17:56"
+      "updatedAt": "15.08.2026, 19:56"
     },
     {
       "agreement": false,
@@ -305,7 +305,7 @@
       "program": "Управление персоналом",
       "score": 16,
       "status": "На рассмотрении",
-      "updatedAt": "15.08.2026, 17:56"
+      "updatedAt": "15.08.2026, 19:56"
     },
     {
       "agreement": false,
@@ -328,7 +328,7 @@
       "program": "Реклама и связи с общественностью",
       "score": 16,
       "status": "На рассмотрении",
-      "updatedAt": "15.08.2026, 17:56"
+      "updatedAt": "15.08.2026, 19:56"
     },
     {
       "agreement": false,
@@ -351,7 +351,7 @@
       "program": "Информационные системы и технологии",
       "score": 16,
       "status": "На рассмотрении",
-      "updatedAt": "15.08.2026, 17:56"
+      "updatedAt": "15.08.2026, 19:56"
     },
     {
       "agreement": false,
@@ -374,7 +374,7 @@
       "program": "Прикладная информатика",
       "score": 16,
       "status": "На рассмотрении",
-      "updatedAt": "15.08.2026, 17:56"
+      "updatedAt": "15.08.2026, 19:56"
     },
     {
       "agreement": false,
@@ -397,7 +397,7 @@
       "program": "Прикладная информатика",
       "score": 16,
       "status": "На рассмотрении",
-      "updatedAt": "15.08.2026, 17:56"
+      "updatedAt": "15.08.2026, 19:56"
     },
     {
       "agreement": false,
@@ -419,7 +419,7 @@
       "program": "Бизнес-информатика",
       "score": 66,
       "status": "Участвует в конкурсе",
-      "updatedAt": "15.08.2026, 17:56"
+      "updatedAt": "15.08.2026, 19:56"
     },
     {
       "agreement": false,
@@ -442,7 +442,7 @@
       "program": "Медиакоммуникации",
       "score": 16,
       "status": "На рассмотрении",
-      "updatedAt": "15.08.2026, 17:56"
+      "updatedAt": "15.08.2026, 19:56"
     },
     {
       "agreement": false,
@@ -465,8 +465,8 @@
       "priority": 18,
       "program": "Менеджмент",
       "score": 62,
-      "status": "На рассмотрении",
-      "updatedAt": "15.08.2026, 17:56"
+      "status": "Участвует в конкурсе",
+      "updatedAt": "15.08.2026, 19:56"
     },
     {
       "agreement": false,
@@ -489,8 +489,8 @@
       "priority": 19,
       "program": "Менеджмент",
       "score": 62,
-      "status": "На рассмотрении",
-      "updatedAt": "15.08.2026, 17:56"
+      "status": "Участвует в конкурсе",
+      "updatedAt": "15.08.2026, 19:56"
     },
     {
       "agreement": false,
@@ -513,8 +513,8 @@
       "priority": 20,
       "program": "Экономика",
       "score": 62,
-      "status": "На рассмотрении",
-      "updatedAt": "15.08.2026, 17:56"
+      "status": "Участвует в конкурсе",
+      "updatedAt": "15.08.2026, 19:56"
     },
     {
       "agreement": false,
@@ -537,8 +537,8 @@
       "priority": 21,
       "program": "Экономика",
       "score": 62,
-      "status": "На рассмотрении",
-      "updatedAt": "15.08.2026, 17:56"
+      "status": "Участвует в конкурсе",
+      "updatedAt": "15.08.2026, 19:56"
     },
     {
       "agreement": false,
@@ -561,8 +561,8 @@
       "priority": 22,
       "program": "Экономика",
       "score": 62,
-      "status": "На рассмотрении",
-      "updatedAt": "15.08.2026, 17:56"
+      "status": "Участвует в конкурсе",
+      "updatedAt": "15.08.2026, 19:56"
     },
     {
       "agreement": false,
@@ -585,8 +585,8 @@
       "priority": 23,
       "program": "Экономика",
       "score": 62,
-      "status": "На рассмотрении",
-      "updatedAt": "15.08.2026, 17:56"
+      "status": "Участвует в конкурсе",
+      "updatedAt": "15.08.2026, 19:56"
     },
     {
       "agreement": false,
@@ -608,7 +608,7 @@
       "program": "Торговое дело",
       "score": 16,
       "status": "На рассмотрении",
-      "updatedAt": "15.08.2026, 17:56"
+      "updatedAt": "15.08.2026, 19:56"
     },
     {
       "agreement": false,
@@ -630,7 +630,7 @@
       "program": "Товароведение",
       "score": 16,
       "status": "На рассмотрении",
-      "updatedAt": "15.08.2026, 17:56"
+      "updatedAt": "15.08.2026, 19:56"
     },
     {
       "agreement": false,
