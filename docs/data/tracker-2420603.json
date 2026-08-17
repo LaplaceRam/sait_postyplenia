@@ -1,6 +1,6 @@
 {
   "applicantUkp": "2420603",
-  "fetchedAt": "2026-08-17T19:43:14.072Z",
+  "fetchedAt": "2026-08-17T20:01:03.885Z",
   "source": "Admissions tracker",
   "groups": [
     {
@@ -25,7 +25,7 @@
       "program": "Экономика",
       "score": 62,
       "status": "На рассмотрении",
-      "updatedAt": "17.08.2026, 07:56"
+      "updatedAt": "17.08.2026, 21:56"
     },
     {
       "agreement": false,
@@ -47,7 +47,7 @@
       "program": "Юриспруденция",
       "score": 65,
       "status": "Участвует в конкурсе",
-      "updatedAt": "17.08.2026, 07:56"
+      "updatedAt": "17.08.2026, 21:56"
     },
     {
       "agreement": false,
@@ -71,7 +71,7 @@
       "program": "Менеджмент",
       "score": 62,
       "status": "На рассмотрении",
-      "updatedAt": "17.08.2026, 07:56"
+      "updatedAt": "17.08.2026, 21:56"
     },
     {
       "agreement": false,
@@ -89,13 +89,13 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f212e-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 258,
+      "myPlace": 259,
       "places": 16,
       "priority": 2,
       "program": "Менеджмент",
       "score": 62,
       "status": "Участвует в конкурсе",
-      "updatedAt": "17.08.2026, 07:56"
+      "updatedAt": "17.08.2026, 21:56"
     },
     {
       "agreement": false,
@@ -119,7 +119,7 @@
       "program": "Экономика",
       "score": 62,
       "status": "Участвует в конкурсе",
-      "updatedAt": "17.08.2026, 07:56"
+      "updatedAt": "17.08.2026, 21:56"
     },
     {
       "agreement": false,
@@ -137,13 +137,13 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f1e25-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 226,
+      "myPlace": 227,
       "places": 18,
       "priority": 4,
       "program": "Экономика",
       "score": 62,
       "status": "Участвует в конкурсе",
-      "updatedAt": "17.08.2026, 07:56"
+      "updatedAt": "17.08.2026, 21:56"
     },
     {
       "agreement": false,
@@ -161,13 +161,13 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f2178-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 125,
+      "myPlace": 126,
       "places": 10,
       "priority": 5,
       "program": "Менеджмент",
       "score": 62,
       "status": "Участвует в конкурсе",
-      "updatedAt": "17.08.2026, 07:56"
+      "updatedAt": "17.08.2026, 21:56"
     },
     {
       "agreement": false,
@@ -185,13 +185,13 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f21c2-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 186,
+      "myPlace": 188,
       "places": 15,
       "priority": 6,
       "program": "Менеджмент",
       "score": 62,
       "status": "Участвует в конкурсе",
-      "updatedAt": "17.08.2026, 07:56"
+      "updatedAt": "17.08.2026, 21:56"
     },
     {
       "agreement": false,
@@ -209,13 +209,13 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f227b-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 145,
+      "myPlace": 147,
       "places": 7,
       "priority": 7,
       "program": "Менеджмент",
       "score": 62,
       "status": "Участвует в конкурсе",
-      "updatedAt": "17.08.2026, 07:56"
+      "updatedAt": "17.08.2026, 21:56"
     },
     {
       "agreement": false,
@@ -233,13 +233,13 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f2ab8-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 212,
+      "myPlace": 213,
       "places": 17,
       "priority": 8,
       "program": "Финансы и кредит",
       "score": 62,
       "status": "Участвует в конкурсе",
-      "updatedAt": "17.08.2026, 07:56"
+      "updatedAt": "17.08.2026, 21:56"
     },
     {
       "agreement": false,
@@ -255,13 +255,13 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f237e-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 100,
+      "myPlace": 102,
       "places": 9,
       "priority": 9,
       "program": "Государственное и муниципальное управление",
       "score": 16,
       "status": "На рассмотрении",
-      "updatedAt": "17.08.2026, 07:56"
+      "updatedAt": "17.08.2026, 21:56"
     },
     {
       "agreement": false,
@@ -277,13 +277,13 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f2437-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 67,
+      "myPlace": 69,
       "places": 5,
       "priority": 10,
       "program": "Государственное и муниципальное управление",
       "score": 16,
       "status": "На рассмотрении",
-      "updatedAt": "17.08.2026, 07:56"
+      "updatedAt": "17.08.2026, 21:56"
     },
     {
       "agreement": false,
@@ -299,13 +299,13 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f22ea-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 92,
+      "myPlace": 91,
       "places": 10,
       "priority": 11,
       "program": "Управление персоналом",
       "score": 16,
       "status": "На рассмотрении",
-      "updatedAt": "17.08.2026, 07:56"
+      "updatedAt": "17.08.2026, 21:56"
     },
     {
       "agreement": false,
@@ -322,13 +322,13 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f2b96-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 41,
+      "myPlace": 44,
       "places": 20,
       "priority": 12,
       "program": "Реклама и связи с общественностью",
       "score": 16,
       "status": "На рассмотрении",
-      "updatedAt": "17.08.2026, 07:56"
+      "updatedAt": "17.08.2026, 21:56"
     },
     {
       "agreement": false,
@@ -345,13 +345,13 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f1bfa-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 111,
+      "myPlace": 112,
       "places": 25,
       "priority": 13,
       "program": "Информационные системы и технологии",
       "score": 58,
-      "status": "На рассмотрении",
-      "updatedAt": "17.08.2026, 07:56"
+      "status": "Участвует в конкурсе",
+      "updatedAt": "17.08.2026, 21:56"
     },
     {
       "agreement": false,
@@ -368,13 +368,13 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f1c8e-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 136,
+      "myPlace": 137,
       "places": 33,
       "priority": 14,
       "program": "Прикладная информатика",
       "score": 58,
-      "status": "На рассмотрении",
-      "updatedAt": "17.08.2026, 07:56"
+      "status": "Участвует в конкурсе",
+      "updatedAt": "17.08.2026, 21:56"
     },
     {
       "agreement": false,
@@ -391,13 +391,13 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f1cd8-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 105,
+      "myPlace": 106,
       "places": 24,
       "priority": 15,
       "program": "Прикладная информатика",
       "score": 58,
-      "status": "На рассмотрении",
-      "updatedAt": "17.08.2026, 07:56"
+      "status": "Участвует в конкурсе",
+      "updatedAt": "17.08.2026, 21:56"
     },
     {
       "agreement": false,
@@ -419,7 +419,7 @@
       "program": "Бизнес-информатика",
       "score": 66,
       "status": "Участвует в конкурсе",
-      "updatedAt": "17.08.2026, 07:56"
+      "updatedAt": "17.08.2026, 21:56"
     },
     {
       "agreement": false,
@@ -436,13 +436,13 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f2c2a-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 54,
+      "myPlace": 57,
       "places": 30,
       "priority": 17,
       "program": "Медиакоммуникации",
       "score": 16,
       "status": "На рассмотрении",
-      "updatedAt": "17.08.2026, 07:56"
+      "updatedAt": "17.08.2026, 21:56"
     },
     {
       "agreement": false,
@@ -460,13 +460,13 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f220c-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 203,
+      "myPlace": 204,
       "places": 15,
       "priority": 18,
       "program": "Менеджмент",
       "score": 62,
       "status": "Участвует в конкурсе",
-      "updatedAt": "17.08.2026, 07:56"
+      "updatedAt": "17.08.2026, 21:56"
     },
     {
       "agreement": false,
@@ -484,13 +484,13 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "e2db4933-39a8-11f1-8dbe-5cba2c649f58",
-      "myPlace": 148,
+      "myPlace": 149,
       "places": 14,
       "priority": 19,
       "program": "Менеджмент",
       "score": 62,
       "status": "Участвует в конкурсе",
-      "updatedAt": "17.08.2026, 07:56"
+      "updatedAt": "17.08.2026, 21:56"
     },
     {
       "agreement": false,
@@ -508,13 +508,13 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "663533eb-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 182,
+      "myPlace": 183,
       "places": 8,
       "priority": 20,
       "program": "Экономика",
       "score": 62,
       "status": "Участвует в конкурсе",
-      "updatedAt": "17.08.2026, 07:56"
+      "updatedAt": "17.08.2026, 21:56"
     },
     {
       "agreement": false,
@@ -538,7 +538,7 @@
       "program": "Экономика",
       "score": 62,
       "status": "Участвует в конкурсе",
-      "updatedAt": "17.08.2026, 07:56"
+      "updatedAt": "17.08.2026, 21:56"
     },
     {
       "agreement": false,
@@ -556,13 +556,13 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f1d6c-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 247,
+      "myPlace": 248,
       "places": 10,
       "priority": 22,
       "program": "Экономика",
       "score": 62,
       "status": "Участвует в конкурсе",
-      "updatedAt": "17.08.2026, 07:56"
+      "updatedAt": "17.08.2026, 21:56"
     },
     {
       "agreement": false,
@@ -580,13 +580,13 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f1f03-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 181,
+      "myPlace": 182,
       "places": 11,
       "priority": 23,
       "program": "Экономика",
       "score": 62,
       "status": "Участвует в конкурсе",
-      "updatedAt": "17.08.2026, 07:56"
+      "updatedAt": "17.08.2026, 21:56"
     },
     {
       "agreement": false,
@@ -608,7 +608,7 @@
       "program": "Торговое дело",
       "score": 16,
       "status": "На рассмотрении",
-      "updatedAt": "17.08.2026, 07:56"
+      "updatedAt": "17.08.2026, 21:56"
     },
     {
       "agreement": false,
@@ -624,13 +624,13 @@
       "form": "Очная",
       "funding": "Общий конкурс",
       "id": "6c2f2a24-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 16,
+      "myPlace": 19,
       "places": 8,
       "priority": 25,
       "program": "Товароведение",
       "score": 76,
-      "status": "На рассмотрении",
-      "updatedAt": "17.08.2026, 07:56"
+      "status": "Участвует в конкурсе",
+      "updatedAt": "17.08.2026, 21:56"
     },
     {
       "agreement": false,
