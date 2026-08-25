@@ -1,6 +1,6 @@
 {
   "applicantUkp": "2420603",
-  "fetchedAt": "2026-08-25T11:45:49.566Z",
+  "fetchedAt": "2026-08-25T12:04:31.325Z",
   "source": "Admissions tracker",
   "groups": [
     {
@@ -513,7 +513,7 @@
       "program": "Юриспруденция (40.04.01)",
       "score": 0,
       "status": "Нет результатов ВИ",
-      "updatedAt": "25.08.2026 16:01"
+      "updatedAt": "25.08.2026 17:02"
     },
     {
       "agreement": false,
@@ -530,7 +530,7 @@
       "program": "Юриспруденция (40.04.01)",
       "score": 0,
       "status": "Нет результатов ВИ",
-      "updatedAt": "25.08.2026 16:01"
+      "updatedAt": "25.08.2026 17:02"
     },
     {
       "agreement": false,
@@ -547,7 +547,7 @@
       "program": "Экономика (38.04.01)",
       "score": 0,
       "status": "Нет результатов ВИ",
-      "updatedAt": "25.08.2026 16:01"
+      "updatedAt": "25.08.2026 17:02"
     },
     {
       "agreement": false,
@@ -564,7 +564,7 @@
       "program": "Программная инженерия (09.04.04)",
       "score": 0,
       "status": "Нет результатов ВИ",
-      "updatedAt": "25.08.2026 16:01"
+      "updatedAt": "25.08.2026 17:02"
     }
   ]
 }
