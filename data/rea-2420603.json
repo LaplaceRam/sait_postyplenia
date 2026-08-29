@@ -1,6 +1,6 @@
 {
   "applicantUkp": "2420603",
-  "fetchedAt": "2026-08-29T00:44:58.531Z",
+  "fetchedAt": "2026-08-29T07:25:44.064Z",
   "source": "REA",
   "groups": [
     {
@@ -19,13 +19,13 @@
       "form": "Заочная",
       "funding": "Контракт",
       "id": "7226ba8c-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 12,
+      "myPlace": 13,
       "places": 10,
       "priority": 1,
       "program": "Экономика",
       "score": 62,
       "status": "На рассмотрении",
-      "updatedAt": "29.08.2026, 03:11"
+      "updatedAt": "29.08.2026, 09:11"
     },
     {
       "agreement": false,
@@ -43,13 +43,13 @@
       "form": "Заочная",
       "funding": "Контракт",
       "id": "7226bab1-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 9,
+      "myPlace": 10,
       "places": 10,
       "priority": 2,
       "program": "Менеджмент",
       "score": 62,
       "status": "На рассмотрении",
-      "updatedAt": "29.08.2026, 03:11"
+      "updatedAt": "29.08.2026, 09:11"
     }
   ]
 }
