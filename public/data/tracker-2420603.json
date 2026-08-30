@@ -1,6 +1,6 @@
 {
   "applicantUkp": "2420603",
-  "fetchedAt": "2026-08-30T17:47:53.210Z",
+  "fetchedAt": "2026-08-30T20:05:17.804Z",
   "source": "Admissions tracker",
   "groups": [
     {
@@ -25,7 +25,7 @@
       "program": "Экономика",
       "score": 62,
       "status": "На рассмотрении",
-      "updatedAt": "30.08.2026, 19:12"
+      "updatedAt": "30.08.2026, 21:12"
     },
     {
       "agreement": false,
@@ -49,7 +49,7 @@
       "program": "Менеджмент",
       "score": 62,
       "status": "На рассмотрении",
-      "updatedAt": "30.08.2026, 19:12"
+      "updatedAt": "30.08.2026, 21:12"
     }
   ]
 }
