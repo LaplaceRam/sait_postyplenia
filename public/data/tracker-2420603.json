@@ -1,6 +1,6 @@
 {
   "applicantUkp": "2420603",
-  "fetchedAt": "2026-08-31T06:22:00.105Z",
+  "fetchedAt": "2026-08-31T14:11:58.601Z",
   "source": "Admissions tracker",
   "groups": [
     {
@@ -19,13 +19,13 @@
       "form": "Заочная",
       "funding": "Контракт",
       "id": "7226ba8c-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 13,
+      "myPlace": 14,
       "places": 10,
       "priority": 1,
       "program": "Экономика",
       "score": 62,
       "status": "На рассмотрении",
-      "updatedAt": "31.08.2026, 09:12"
+      "updatedAt": "31.08.2026, 15:12"
     },
     {
       "agreement": false,
@@ -43,13 +43,13 @@
       "form": "Заочная",
       "funding": "Контракт",
       "id": "7226bab1-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 10,
+      "myPlace": 11,
       "places": 10,
       "priority": 2,
       "program": "Менеджмент",
       "score": 62,
       "status": "На рассмотрении",
-      "updatedAt": "31.08.2026, 09:12"
+      "updatedAt": "31.08.2026, 15:12"
     }
   ]
 }
