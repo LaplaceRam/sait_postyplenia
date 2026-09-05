@@ -1,6 +1,6 @@
 {
   "applicantUkp": "2420603",
-  "fetchedAt": "2026-09-05T19:32:41.055Z",
+  "fetchedAt": "2026-09-05T21:38:19.392Z",
   "source": "REA",
   "groups": [
     {
@@ -25,7 +25,7 @@
       "program": "Экономика",
       "score": 62,
       "status": "На рассмотрении",
-      "updatedAt": "05.09.2026, 20:32"
+      "updatedAt": "06.09.2026, 00:32"
     },
     {
       "agreement": false,
@@ -49,7 +49,7 @@
       "program": "Менеджмент",
       "score": 62,
       "status": "На рассмотрении",
-      "updatedAt": "05.09.2026, 20:32"
+      "updatedAt": "06.09.2026, 00:32"
     }
   ]
 }
