@@ -1,6 +1,6 @@
 {
   "applicantUkp": "2420603",
-  "fetchedAt": "2026-09-09T18:31:35.501Z",
+  "fetchedAt": "2026-09-09T21:08:13.890Z",
   "source": "REA",
   "groups": [
     {
@@ -25,7 +25,7 @@
       "program": "Экономика",
       "score": 62,
       "status": "Участвует в конкурсе",
-      "updatedAt": "09.09.2026, 20:34"
+      "updatedAt": "09.09.2026, 22:34"
     },
     {
       "agreement": false,
@@ -49,7 +49,7 @@
       "program": "Менеджмент",
       "score": 62,
       "status": "Участвует в конкурсе",
-      "updatedAt": "09.09.2026, 20:34"
+      "updatedAt": "09.09.2026, 22:34"
     }
   ]
 }
