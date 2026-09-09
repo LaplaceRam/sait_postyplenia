@@ -1,6 +1,6 @@
 {
   "applicantUkp": "2420603",
-  "fetchedAt": "2026-09-09T11:15:56.956Z",
+  "fetchedAt": "2026-09-09T15:08:16.149Z",
   "source": "Admissions tracker",
   "groups": [
     {
@@ -19,13 +19,13 @@
       "form": "Заочная",
       "funding": "Контракт",
       "id": "7226ba8c-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 19,
+      "myPlace": 21,
       "places": 10,
       "priority": 1,
       "program": "Экономика",
       "score": 62,
       "status": "Ожидание результатов ВИ",
-      "updatedAt": "09.09.2026, 08:34"
+      "updatedAt": "09.09.2026, 16:34"
     },
     {
       "agreement": false,
@@ -49,7 +49,7 @@
       "program": "Менеджмент",
       "score": 62,
       "status": "Ожидание результатов ВИ",
-      "updatedAt": "09.09.2026, 08:34"
+      "updatedAt": "09.09.2026, 16:34"
     }
   ]
 }
