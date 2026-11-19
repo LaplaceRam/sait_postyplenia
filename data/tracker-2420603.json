@@ -1,55 +1,6 @@
 {
   "applicantUkp": "2420603",
-  "fetchedAt": "2026-11-19T04:33:49.188Z",
+  "fetchedAt": "2026-11-19T13:49:39.210Z",
   "source": "Admissions tracker",
-  "groups": [
-    {
-      "agreement": false,
-      "campus": "orenburg",
-      "exam": {
-        "display": "Экономика и управление, 10 августа 14:00",
-        "isConflict": false,
-        "matches": [
-          "Экономика",
-          "Менеджмент",
-          "Финансы и кредит"
-        ]
-      },
-      "faculty": "Оренбург",
-      "form": "Заочная",
-      "funding": "Контракт",
-      "id": "7226ba8c-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 21,
-      "places": 10,
-      "priority": 1,
-      "program": "Экономика",
-      "score": 62,
-      "status": "Участвует в конкурсе",
-      "updatedAt": "12.09.2026, 20:35"
-    },
-    {
-      "agreement": false,
-      "campus": "orenburg",
-      "exam": {
-        "display": "Экономика и управление, 10 августа 14:00",
-        "isConflict": false,
-        "matches": [
-          "Экономика",
-          "Менеджмент",
-          "Финансы и кредит"
-        ]
-      },
-      "faculty": "Оренбург",
-      "form": "Заочная",
-      "funding": "Контракт",
-      "id": "7226bab1-11ad-11f1-8dba-5cba2c649f58",
-      "myPlace": 16,
-      "places": 10,
-      "priority": 2,
-      "program": "Менеджмент",
-      "score": 62,
-      "status": "Участвует в конкурсе",
-      "updatedAt": "12.09.2026, 20:35"
-    }
-  ]
+  "groups": []
 }
